@@ -1,0 +1,57 @@
+name: Scheduled blog publishing
+
+on:
+  schedule:
+    # 22:00 UTC = 07:00 the following day in Japan.
+    # Later checks also retry deployment if the first run fails.
+    - cron: '0,15,30,45 22 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: blog-pages-publishing
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+      - name: Publish articles whose release time has arrived
+        run: python3 _scheduled/publish.py
+      - name: Save published articles to the repository
+        run: |
+          git add index.html
+          find . -maxdepth 1 -type f -name '*.png' -exec git add -- {} +
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'Publish scheduled blog articles'
+            git push origin HEAD:main
+          fi
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy blog
+        id: deployment
+        uses: actions/deploy-pages@v4

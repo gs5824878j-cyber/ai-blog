@@ -1,0 +1,11 @@
+[
+  {
+    "id": "article-analytics",
+    "publish_at": "2026-10-07T07:00:00+09:00",
+    "html": "analytics.html",
+    "css": "analytics.css",
+    "assets": [
+      "analytics-realtime-zero.png"
+    ]
+  }
+]
