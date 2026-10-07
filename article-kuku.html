@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>子供のためにAIで九九アプリを作ってみた。一発では全然できなかった。 | 40代のAI制作ノート</title>
+<meta name="description" content="子供のために作った「九九そだて」。時間選択、復習、育成――15往復以上のやり取りで、自分の欲しい形に近づけた記録。">
+<meta name="theme-color" content="#142c29">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23142c29'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='sans-serif' font-size='21' font-weight='bold' fill='%23e5ff78'%3EN%3C/text%3E%3C/svg%3E">
+<style>
+:root{--ink:#142c29;--muted:#536560;--paper:#f5f7f6;--line:#d8e0dc;--accent:#e5ff78;--white:#fff}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:100px}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;font-size:16px;line-height:1.8}a{color:inherit;text-decoration:none}button{font:inherit;color:inherit;cursor:pointer}a:focus-visible,button:focus-visible{outline:3px solid #548d14;outline-offset:5px}.wrap{max-width:1180px;margin:auto;padding:0 40px}.top{border-bottom:1px solid var(--line);background:var(--paper)}header{min-height:94px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{font-size:19px;font-weight:800;display:flex;align-items:center;gap:12px;line-height:1.4}.logo{background:var(--ink);color:var(--accent);display:grid;place-items:center;width:38px;height:38px;border-radius:9px;font-size:24px}nav{display:flex;gap:28px;font-size:14px;font-weight:650}nav a:hover{text-decoration:underline;text-underline-offset:6px}.hero{padding:66px 0 60px;display:grid;grid-template-columns:1.4fr 1fr;gap:64px;align-items:center}.eyebrow{font-size:13px;letter-spacing:.15em;font-weight:800;margin:0 0 22px}.hero h1{font-size:clamp(36px,4.6vw,58px);line-height:1.45;letter-spacing:-.04em;margin:0 0 22px;font-weight:850}.highlight{background:linear-gradient(transparent 63%,var(--accent) 63%,var(--accent) 92%,transparent 92%)}.lead{color:var(--muted);max-width:540px;margin:0}.hero-note{background:var(--ink);color:white;padding:34px;border-radius:3px;transform:rotate(1.5deg)}.hero-note .eyebrow{color:var(--accent);margin-bottom:22px}.note-title{font-size:23px;font-weight:750;line-height:1.7;margin:0 0 22px}.steps{list-style:none;padding:0;margin:0}.steps li{padding:12px 0;border-top:1px solid #ffffff30;display:flex;gap:16px;font-size:16px}.steps b{font-family:monospace;color:var(--accent);font-size:17px}.section{padding:44px 0 54px;border-top:1px solid var(--line)}.section-head{display:flex;justify-content:space-between;align-items:baseline;gap:20px;margin-bottom:26px}.section-head h2{margin:0;font-size:26px;letter-spacing:-.025em}.section-head p{font-size:14px;color:var(--muted);margin:0}.feature{display:grid;grid-template-columns:.9fr 1.3fr;border:1px solid var(--line);background:white}.feature-visual{background:var(--accent);padding:32px;display:flex;flex-direction:column;justify-content:space-between;min-height:280px;gap:30px}.issue{font-family:monospace;font-size:14px;letter-spacing:.08em}.big-type{font-size:clamp(36px,4vw,52px);font-weight:850;line-height:1.35;letter-spacing:-.045em}.feature-copy{padding:34px 38px}.meta{display:flex;align-items:center;gap:13px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin-bottom:16px}.tag{font-size:12px;border:1px solid var(--line);padding:2px 9px;border-radius:4px;color:var(--ink)}h3{margin:0 0 13px;font-size:23px;line-height:1.6}.feature-copy p,.article-copy p{color:var(--muted);margin:0 0 20px}.read{border:0;border-bottom:1px solid var(--ink);background:none;padding:0 0 3px;font-size:14px;font-weight:750}.read:hover{color:#41691c}.articles{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:24px}.article{background:white;border:1px solid var(--line);display:flex;flex-direction:column}.tile{min-height:144px;padding:22px 24px;display:flex;flex-direction:column;justify-content:space-between;gap:20px;background:#e6eef4;color:#183654}.tile.purple{background:#e9e5f7;color:#4e3f73}.tile.orange{background:#ffead9;color:#784426}.tile b{font-size:25px;letter-spacing:-.02em;line-height:1.4}.tile small{font-family:monospace;font-size:12px;letter-spacing:.12em}.article-copy{padding:24px;display:flex;flex-direction:column;flex:1}.article-copy h3{font-size:18px}.article-copy p{font-size:15px}.article-copy .read{align-self:flex-start;margin-top:auto}.projects{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.project{padding:25px;border:1px solid var(--line);background:white}.project-num{font-family:monospace;font-size:13px;color:var(--muted);margin-bottom:12px}.project h3{font-size:20px}.project p{font-size:15px;color:var(--muted);margin:0 0 20px}.status{display:inline-block;background:#edf2ef;font-size:13px;padding:3px 10px;border-radius:4px}.about{display:grid;grid-template-columns:1fr 2fr;gap:50px}.about h2{font-size:26px;margin:0}.about p{margin:0 0 16px;color:var(--muted)}.about strong{color:var(--ink)}footer{border-top:1px solid var(--line);padding:28px 0;font-size:13px;color:var(--muted)}.footer-inner{display:flex;justify-content:space-between;gap:20px}.skip{position:absolute;top:-100px;left:15px;background:white;padding:10px;z-index:20}.skip:focus{top:10px}dialog{border:1px solid var(--line);border-radius:6px;max-width:760px;width:calc(100% - 32px);max-height:90dvh;padding:0;color:var(--ink);background:var(--paper)}dialog::backdrop{background:#102522b5}.dialog-top{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;padding:14px 24px;background:var(--paper);border-bottom:1px solid var(--line);z-index:1}.close{border:1px solid var(--line);background:white;border-radius:4px;padding:6px 16px;font-size:14px;min-height:42px}.dialog-content{padding:32px 40px 44px}.dialog-content h2{font-size:28px;line-height:1.6;margin:0 0 20px}.dialog-content h3{font-size:20px;margin:30px 0 12px}.dialog-content p{margin:0 0 18px}.draft{border-left:3px solid #90ac42;background:#edf1e2;padding:12px 16px;font-size:14px;color:#3f512d}.dialog-content ul{padding-left:24px}.dialog-content li{margin:8px 0}.dialog-content a{text-decoration:underline;text-underline-offset:3px}
+@media(max-width:900px){.hero{gap:30px;grid-template-columns:1.2fr 1fr}.hero-note{padding:25px}.articles,.projects{gap:14px}.article-copy,.project{padding:20px}.wrap{padding:0 26px}.feature-copy{padding:28px}.about{gap:30px}}@media(max-width:680px){.wrap{padding:0 20px}header{min-height:100px;align-items:flex-start;justify-content:center;flex-direction:column;gap:12px;padding-top:18px;padding-bottom:18px}.brand{font-size:17px}.logo{width:32px;height:32px;font-size:21px}nav{gap:25px}.hero{padding:38px 0 40px;grid-template-columns:1fr;gap:28px}.hero h1{font-size:36px}.hero-note{transform:none;padding:25px}.hero-note .note-title{font-size:21px}.section{padding:32px 0 38px}.section-head{align-items:flex-start;flex-direction:column;gap:4px}.section-head h2,.about h2{font-size:23px}.feature{grid-template-columns:1fr}.feature-visual{min-height:210px;padding:25px}.big-type{font-size:38px}.feature-copy{padding:25px}h3{font-size:21px}.articles,.projects{grid-template-columns:1fr;gap:18px}.tile{min-height:126px}.article-copy{padding:25px}.article-copy h3{font-size:20px}.project{padding:25px}.about{grid-template-columns:1fr;gap:18px}.footer-inner{flex-direction:column;gap:4px}.dialog-content{padding:25px}.dialog-content h2{font-size:23px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+[hidden]{display:none!important}.filters{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 26px}.filters button{background:white;border:1px solid var(--line);border-radius:5px;padding:9px 14px;font-size:14px;min-height:44px}.filters button[aria-pressed="true"]{background:var(--ink);color:white;border-color:var(--ink)}#category-empty{padding:28px;border:1px dashed var(--line);color:var(--muted)}nav{flex-wrap:wrap}.logo{flex-shrink:0}
+
+.post{border:1px solid var(--line);background:white;margin:0 0 24px;border-radius:6px;overflow:hidden}.post summary{list-style:none;cursor:pointer;padding:30px 34px;display:block}.post summary::-webkit-details-marker{display:none}.post summary:focus-visible{outline:3px solid #548d14;outline-offset:-5px}.post-meta{display:block;font-size:14px;color:var(--muted);margin-bottom:14px}.post-title{display:block;font-size:26px;font-weight:800;line-height:1.6;margin-bottom:14px}.post-excerpt{display:block;color:var(--muted);margin-bottom:20px}.post-toggle{font-weight:700;font-size:15px;border-bottom:1px solid var(--ink);padding-bottom:4px}.when-open{display:none}.post[open] .when-open{display:inline}.post[open] .when-closed{display:none}.post[open] summary{background:#edf3e7;border-bottom:1px solid var(--line)}.post-body{max-width:760px;margin:auto;padding:36px 34px 42px;line-height:2}.post-body p{margin:0 0 24px}.post-body h3{font-size:21px;margin:38px 0 18px}.post-body strong{font-weight:800}.hero{padding-top:38px;padding-bottom:38px}.hero h1{font-size:clamp(32px,3.6vw,48px)}@media(max-width:680px){.post summary{padding:24px}.post-title{font-size:22px}.post-body{padding:26px 24px}.post-meta{line-height:2}.hero{padding-top:28px;padding-bottom:28px}}@media print{.hero,.top,footer,#about,.post-toggle{display:none}.post-body{display:block!important}details::details-content{content-visibility:visible!important}}
+.post-body a{color:#315d20;text-decoration:underline;text-underline-offset:4px;overflow-wrap:anywhere}.work-showcase{background:#fff;border:1px solid var(--line);border-radius:6px;overflow:hidden}.work-intro{padding:28px}.work-intro h3{margin-top:12px}.work-intro p{color:var(--muted)}.work-links{display:flex;flex-wrap:wrap;gap:14px}.work-links a{padding:10px 16px;border:1px solid var(--ink);border-radius:5px;font-size:15px;font-weight:700}.work-links a:first-child{background:var(--ink);color:var(--accent)}.work-frame{display:block;width:100%;height:740px;border:0;border-top:1px solid var(--line);background:#f6f4fb}.work-help{padding:16px 28px;margin:0;color:var(--muted);font-size:14px}@media(max-width:680px){.work-intro{padding:22px}.work-frame{height:680px}.work-help{padding:16px 22px}}
+
+#article-403 .post-body{overflow-wrap:anywhere}
+#article-403 .article-figure{margin:32px 0;max-width:100%}
+#article-403 .article-figure a{display:block;max-width:100%}
+#article-403 .article-figure img{display:block;width:100%;max-width:100%;height:auto;border:1px solid var(--line);border-radius:6px}
+#article-403 figcaption{margin-top:12px;font-size:14px;line-height:1.8;color:var(--muted)}
+#article-403 hr{border:0;border-top:1px solid var(--line);margin:38px 0}
+#article-403 code{font-size:.95em;background:var(--paper);padding:2px 5px;border-radius:3px}
+</style>
+
+<meta name="google-site-verification" content="HdcqxspYBm1QXcBinrWtrPvj-GFAcDOGZ2AdJdyeljo" />
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+window.blogAnalyticsEnabled = location.protocol === 'https:' && location.hostname.endsWith('.github.io') && location.pathname.startsWith('/ai-blog/');
+if (window.blogAnalyticsEnabled) {
+  gtag('js', new Date());
+  gtag('config', 'G-NBJ7466KDJ', {allow_google_signals: false, allow_ad_personalization_signals: false});
+  const googleTag = document.createElement('script');
+  googleTag.async = true;
+  googleTag.src = 'https://www.googletagmanager.com/gtag/js?id=G-NBJ7466KDJ';
+  document.head.appendChild(googleTag);
+}
+</script>
+<style id="scheduled-style-article-analytics">
+#article-analytics .post-body{overflow-wrap:anywhere}
+#article-analytics .article-figure{margin:32px 0;max-width:100%}
+#article-analytics .article-figure a{display:block;max-width:100%}
+#article-analytics .article-figure img{display:block;width:100%;max-width:100%;height:auto;border:1px solid var(--line);border-radius:6px}
+#article-analytics figcaption{margin-top:12px;font-size:14px;line-height:1.8;color:var(--muted)}
+#article-analytics hr{border:0;border-top:1px solid var(--line);margin:38px 0}
+#article-analytics .zero-heading{font-size:clamp(48px,10vw,68px);line-height:1.2;display:table;background:var(--accent);padding:12px 24px;border-radius:6px}
+#article-analytics .zero-stat{background:var(--paper);padding:12px 18px;border-left:4px solid var(--ink);border-radius:4px}
+#article-analytics .zero-number{font-size:1.65em;line-height:1.3;font-weight:850}
+</style>
+<style id="scheduled-style-article-kuku">
+#article-kuku .post-body{overflow-wrap:anywhere}
+#article-kuku .post-body hr{border:0;border-top:1px solid var(--line);margin:38px 0}
+#article-kuku .post-body h4{font-size:19px;margin:28px 0 16px}
+#article-kuku .kuku-compare-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+#article-kuku .kuku-comparison{margin:30px 0}
+#article-kuku .kuku-comparison-note{font-size:13px;color:var(--muted);line-height:1.8}
+#article-kuku .kuku-compare-grid figure{margin:0;min-width:0;display:flex;flex-direction:column}
+#article-kuku .kuku-diagram{padding:20px;border:1px solid var(--line);border-radius:12px;background:#f3f6f4;flex:1}
+#article-kuku .kuku-diagram-final{background:#f1f6df}
+#article-kuku .kuku-step{font-size:12px;font-weight:800;letter-spacing:.12em;color:var(--muted)}
+#article-kuku .kuku-diagram h4{margin:8px 0 18px;font-size:19px}
+#article-kuku .kuku-symbol{background:var(--ink);color:var(--accent);border-radius:9px;text-align:center;font-size:23px;font-weight:800;padding:20px 6px;margin-bottom:18px}
+#article-kuku .kuku-feature{background:#fff;border:1px solid var(--line);border-radius:7px;padding:10px 12px;margin-bottom:9px;font-size:14px;line-height:1.7}
+#article-kuku .kuku-diagram-summary{font-size:14px;line-height:1.8;margin:18px 0 0}
+#article-kuku figcaption{font-size:13px;line-height:1.8;color:var(--muted);padding:12px 2px}
+#article-kuku .kuku-revisions{text-align:center;padding:14px;background:#edf3e7;border-radius:8px;font-size:15px;margin:16px 0 0}
+@media(max-width:680px){#article-kuku .kuku-compare-grid{grid-template-columns:minmax(0,1fr)}#article-kuku .kuku-diagram{padding:18px}}
+
+#work-kuku{margin-top:24px}
+</style>
+<style id="permanent-article-layout">
+.post-card{display:block;padding:30px 34px}.post-card:hover{background:#edf3e7}
+.article-page{max-width:900px;padding-top:36px;padding-bottom:60px}
+.article-back{display:inline-block;margin:0 0 24px;text-decoration:underline}
+.article-heading{padding:30px 34px;background:#edf3e7;border-bottom:1px solid var(--line)}
+.article-heading h1{margin:0 0 14px}.article-heading .post-excerpt{margin-bottom:0}
+.article-page .post-body{overflow-wrap:anywhere}.article-page img{max-width:100%;height:auto}
+@media(max-width:700px){.post-card,.article-heading{padding:24px}.article-page{padding-top:24px}}
+</style><link rel="canonical" href="https://gs5824878j-cyber.github.io/ai-blog/article-kuku.html"></head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<div class="top"><header class="wrap"><a class="brand" href="index.html" aria-label="40代のAI制作ノート ホーム"><span class="logo" aria-hidden="true">N</span>40代のAI制作ノート</a><nav aria-label="メインメニュー"><a href="index.html#journal">ブログ記事</a><a href="index.html#ai-works">AI制作物</a><a href="index.html#about">このブログについて</a></nav></header></div>
+<main id="main" class="wrap article-page"><a class="article-back" href="index.html#journal">← 記事一覧に戻る</a><article class="post" id="article-kuku"><div class="article-heading"><span class="post-meta">記事 07　<time datetime="2026-10-07">2026.10.07</time>　<span class="tag">AIで作ってみた</span></span><h1 class="post-title">子供のためにAIで九九アプリを作ってみた。一発では全然できなかった。</h1><span class="post-excerpt">子供のために作った「九九そだて」。時間選択、復習、育成――15往復以上のやり取りで、自分の欲しい形に近づけた記録。</span></div><div class="post-body">
+<p>今回は、④「AI制作物」で作ったものを紹介します。</p>
+<p>作ったのは、</p>
+<p><strong>子供向けの九九アプリ。</strong></p>
+<p>きっかけは単純です。</p>
+<p>自分の子供がこれから九九を覚えていく中で、</p>
+<p><strong>「少しでも楽しく覚えられるものを作れないかな」</strong></p>
+<p>と思ったことでした。</p>
+<p>市販のアプリを探すのもいい。</p>
+<p>でも、せっかく最近AIを使っていろいろ作っている。</p>
+<p>だったら、</p>
+<p><strong>自分の子供に合わせたものを、自分で作ってみよう。</strong></p>
+<p>そう考えました。</p>
+<p>もちろん、「自分で」と言っても、</p>
+<p>コードを書くのはChatGPTです。</p>
+<hr>
+<h3>最初は、お願いすればすぐできる</h3>
+<p>最初にChatGPTへ伝えたのは、</p>
+<p>「九九を覚えるためのアプリを作りたい」</p>
+<p>というような内容でした。</p>
+<p>さらに、</p>
+<p>ただ問題を解くだけでは面白くないので、</p>
+<p>・九九を覚える  <br>・問題に挑戦する  <br>・間違えた問題を復習する  <br>・クリアするとポイントがもらえる  <br>・そのポイントでキャラクターを育てる</p>
+<p>という仕組みを考えました。</p>
+<p>イメージとしては、</p>
+<p><strong>「九九＋たまごっち」</strong></p>
+<p>です。</p>
+<p>勉強したらキャラクターが育つ。</p>
+<p>これなら、子供も少しは続けてくれるんじゃないか。</p>
+<p>そう思いました。</p>
+<p>ChatGPTにお願いすると、すぐにそれらしいものができました。</p>
+<p>画面もある。</p>
+<p>ボタンもある。</p>
+<p>問題も出る。</p>
+<p>「これ、意外と簡単にできるな」</p>
+<p>最初はそう思っていました。</p>
+<p>ただ、</p>
+<p>今回もそんなに甘くありませんでした。</p>
+<hr>
+<h3>「作る」より「自分が欲しいものにする」のが大変</h3>
+<p>AIに、</p>
+<p>「九九アプリを作って」</p>
+<p>とお願いすれば、</p>
+<p>九九アプリっぽいものはかなり早く作ってくれます。</p>
+<p>でも、</p>
+<p><strong>そこからが長い。</strong></p>
+<p>実際、今回のアプリは、最初の試作から今の形になるまで、</p>
+<p><strong>少なくとも15往復以上</strong></p>
+<p>ChatGPTとやり取りしました。</p>
+<p>「ここを変えて」</p>
+<p>↓</p>
+<p>修正版ができる。</p>
+<p>↓</p>
+<p>触ってみる。</p>
+<p>↓</p>
+<p>「やっぱりここも変えたい」</p>
+<p>↓</p>
+<p>また修正版。</p>
+<p>これの繰り返しです。</p>
+<p>最初に作ってもらった時点では、</p>
+<p>「AIすごい。もう完成じゃん」</p>
+<p>くらいに思っていました。</p>
+<p>15往復後。</p>
+<p>まだ直したいところがあります。</p>
+<hr>
+<h3>「3分チャレンジ」、子供には長かった</h3>
+<p>最初のアプリには、</p>
+<p><strong>「3分チャレンジ」</strong></p>
+<p>という機能を入れていました。</p>
+<p>3分間で何問答えられるか挑戦する。</p>
+<p>ゲーム感覚もあるし、</p>
+<p>なんとなく良さそうです。</p>
+<p>でも、実際に子供のことを考えてみると、</p>
+<p>ふと思いました。</p>
+<p><strong>3分も集中して九九をやるか？</strong></p>
+<p>大人の3分は短い。</p>
+<p>でも、子供が九九の問題に集中する3分は結構長い。</p>
+<p>特に、</p>
+<p>まだ九九を覚えている途中ならなおさらです。</p>
+<p>そこで、</p>
+<p>1分、3分、5分など、</p>
+<p>チャレンジ時間を選べるようにしました。</p>
+<p>これは、実際に自分の子供を思い浮かべながら作ったから気づけた部分でした。</p>
+<p>「一般的な九九アプリ」を作るのではなく、</p>
+<p><strong>「うちの子だったらどう使うだろう？」</strong></p>
+<p>と考える。</p>
+<p>AIで自分専用のものを作る面白さは、こういうところにある気がします。</p>
+<hr>
+<h3>正解するだけではなく、「忘れた頃にもう一度」</h3>
+<p>もうひとつ入れたかったのが、</p>
+<p><strong>復習の仕組み</strong></p>
+<p>です。</p>
+<p>せっかく覚えても、時間がたてば忘れます。</p>
+<p>そこで、</p>
+<p>間違えた問題や苦手な問題を記録して、</p>
+<p>あとでもう一度出す。</p>
+<p>いわゆる、</p>
+<p><strong>「忘れそうなタイミングでもう一度やる」</strong></p>
+<p>仕組みを入れたかった。</p>
+<p>最初は単純な問題集だったものが、</p>
+<p>「間違えた問題はどうする？」</p>
+<p>「どの段を学習済みにする？」</p>
+<p>「今日の課題では何を出す？」</p>
+<p>と考えていくうちに、</p>
+<p>どんどん複雑になっていきました。</p>
+<p>さらに、</p>
+<p>間違えたときは正解を表示してから次へ進んでほしい。</p>
+<p>チャレンジの成績から苦手な段も分かるようにしたい。</p>
+<p>九九の読み方も、必要なときだけ表示したい。</p>
+<p>ポイントのルールも分かりやすくしたい。</p>
+<p>……</p>
+<p><strong>細かい。</strong></p>
+<p>でも、自分で使うことを考えると、この細かいところが気になります。</p>
+<p>そして細かい要望を出すたびに、</p>
+<p>ChatGPTとの往復が1回ずつ増えていきます。</p>
+<hr>
+<h3>一番やりたかった「育成」が、意外と難しい</h3>
+<p>今回、個人的に一番やりたかったのは、</p>
+<p><strong>育成要素</strong></p>
+<p>でした。</p>
+<p>九九を勉強するとポイントがもらえる。</p>
+<p>ポイントを使うとキャラクターが成長する。</p>
+<p>「勉強したら育つ」</p>
+<p>という仕組みです。</p>
+<p>子供からすると、</p>
+<p>「九九を10問やりなさい」</p>
+<p>より、</p>
+<p>「あと10ポイントで進化するよ」</p>
+<p>のほうが、やる気になるんじゃないか。</p>
+<p>そんな狙いでした。</p>
+<p>なので、</p>
+<p>レベル、</p>
+<p>経験値、</p>
+<p>ごほうび、</p>
+<p>育成キャラクター</p>
+<p>などを追加していきました。</p>
+<p>ただ、ここはまだ満足していません。</p>
+<p>もっとキャラクターが動いたり、</p>
+<p>見た目が変わったり、</p>
+<p>育てている感覚を強くしたい。</p>
+<p>理想を言えば、</p>
+<p>本当に「たまごっち」のように、</p>
+<p><strong>毎日少し見に行きたくなるくらいの育成要素</strong></p>
+<p>にしたい。</p>
+<p>でも、そこまで始めると、</p>
+<p>アプリ作りが終わりません。</p>
+<p>今回かなり実感したのですが、</p>
+<p>AIを使えば修正自体はできます。</p>
+<p>だからこそ、</p>
+<p><strong>「もうちょっとだけ」</strong></p>
+<p>が永遠に続きます。</p>
+<p>ここを変えたい。</p>
+<p>直した。</p>
+<p>じゃあ、こっちも変えたい。</p>
+<p>直した。</p>
+<p>今度は育成画面が気になる。</p>
+<p>……</p>
+<p>完全に終わりがありません。</p>
+<p>なので今回は、</p>
+<p><strong>ある程度のところで一度完成ということにしました。</strong></p>
+<p>育成部分は、今後また改善していこうと思っています。</p>
+<hr>
+<h3>AIなら一発完成、ではなかった</h3>
+<p>今回の九九アプリを作ってみて感じたのは、</p>
+<p>AIを使えば、</p>
+<p><strong>最初の80％くらいまではものすごく速い</strong></p>
+<p>ということです。</p>
+<p>「こんなものを作りたい」</p>
+<p>と伝えると、</p>
+<p>驚くほど早く形になります。</p>
+<p>でも、</p>
+<p>そこから、</p>
+<p>「自分が本当に使いたいもの」</p>
+<p>に近づけていくのには時間がかかります。</p>
+<p>ボタンが動かないこともありました。</p>
+<p>プレビューで触っても反応しないこともありました。</p>
+<p>仕様を変更したら、別の部分をまた直すこともありました。</p>
+<p>今回だけでも、</p>
+<p><strong>15往復以上。</strong></p>
+<p>AIに一言お願いして完成、</p>
+<p>という世界ではありませんでした。</p>
+<p>ただ、</p>
+<p>僕自身はプログラムを書けません。</p>
+<p>それでも、</p>
+<p>15回、</p>
+<p>「こうしたい」</p>
+<p>と伝えることはできます。</p>
+<p>AIがなかったら、</p>
+<p>そもそも0から1を作れなかった。</p>
+<p>でもAIがあることで、</p>
+<p>0から1を作って、</p>
+<p>1から少しずつ自分好みに近づけていくことができる。</p>
+<p>個人的には、</p>
+<p>こちらのほうがAIのすごさを実感しました。</p>
+<hr>
+<h3>最初と最後を比べてみる</h3>
+<p>最後に、</p>
+<p>最初に作った九九アプリと、</p>
+<p>今回いったん完成としたバージョンを比べてみます。</p>
+<div class="kuku-comparison" aria-label="初期版と完成版の機能比較">
+<p class="kuku-comparison-note">制作過程をもとにした機能の比較図です。実際のスクリーンショットではありません。</p>
+<div class="kuku-compare-grid">
+<figure><div class="kuku-diagram"><span class="kuku-step">START</span><h4>最初のバージョン</h4><div class="kuku-symbol" aria-hidden="true">2 × 3 ＝ ?</div><div class="kuku-feature">九九の問題に答える</div><div class="kuku-feature">3分チャレンジに挑戦</div><p class="kuku-diagram-summary">まずは「問題を解く」形に。</p></div><figcaption>最初はシンプルな九九アプリ。ここから15往復以上の修正が始まりました。</figcaption></figure>
+<figure><div class="kuku-diagram kuku-diagram-final"><span class="kuku-step">VER.1</span><h4>今回の最終版</h4><div class="kuku-symbol" aria-hidden="true">学ぶ → 育てる</div><div class="kuku-feature">1・3・5分から時間を選ぶ</div><div class="kuku-feature">学習する段・今日の課題を管理</div><div class="kuku-feature">復習・苦手問題を確認</div><div class="kuku-feature">ポイント → アイテム → 育成・進化</div><p class="kuku-diagram-summary">「うちの子が続けられる形」へ。</p></div><figcaption>復習・苦手問題・時間選択・ポイント・レベル・育成などを追加した今回の最終版。</figcaption></figure>
+</div><p class="kuku-revisions">ここまで、<strong>15往復以上</strong>のやり取り。</p></div>
+<h4>最初のバージョン</h4>
+<p>最初は、</p>
+<p>問題を解く、</p>
+<p>3分チャレンジをする、</p>
+<p>という比較的シンプルなものでした。</p>
+<p>これでも最初に見たときは、</p>
+<p><strong>「AIだけでここまで作れるのか」</strong></p>
+<p>とかなり感動しました。</p>
+<h4>今回の最終版</h4>
+<p>そこから、</p>
+<p>復習、</p>
+<p>学習する段の管理、</p>
+<p>チャレンジ時間の変更、</p>
+<p>苦手問題、</p>
+<p>ポイント、</p>
+<p>レベル、</p>
+<p>ごほうび、</p>
+<p>育成要素</p>
+<p>などを少しずつ追加しました。</p>
+<p>並べてみると、</p>
+<p>同じところから始まったとは思えないくらい変わっています。</p>
+<p>そして、この間、</p>
+<p>僕がやったことの大部分は、</p>
+<p><strong>「もっとこうして」</strong></p>
+<p>とAIにお願いしたことです。</p>
+<hr>
+<p>今回の九九アプリは、</p>
+<p>まだ完成形ではありません。</p>
+<p>特に育成部分は、</p>
+<p>もっと面白くしたい。</p>
+<p>子供が実際に使ってみれば、</p>
+<p>また別の不満も出てくると思います。</p>
+<p>でも、とりあえず一度、</p>
+<p>ここで区切ります。</p>
+<p>AIで何かを作るというのは、</p>
+<p>一発で魔法のように完成品が出てくることではなく、</p>
+<p><strong>AIと何度もやり取りしながら、自分の欲しいものに近づけていくこと</strong></p>
+<p>なのかもしれません。</p>
+<p>そして今回は、</p>
+<p>その相手が「世の中の誰か」ではなく、</p>
+<p><strong>自分の子供だった。</strong></p>
+<p>そこが、今まで作ったものとは少し違うところでした。</p>
+<p>さて。</p>
+<p>実際に使ってくれるかどうか。</p>
+<p>一番難しいテストは、</p>
+<p>これからです。</p>
+<p><a href="../kuku-sodate/" target="_blank" rel="noopener noreferrer">九九そだて Ver.1を試す</a></p>
+</div></article><a class="article-back" href="index.html#journal">← 記事一覧に戻る</a></main><footer><div class="wrap footer-inner"><span>© 2026 40代のAI制作ノート · Ver.1.8</span><span>小さく作って、少しずつ育てる。</span></div></footer><script>if(window.blogAnalyticsEnabled){gtag("event","article_open",{"article_id": "article-kuku", "article_title": "子供のためにAIで九九アプリを作ってみた。一発では全然できなかった。", "send_to": "G-NBJ7466KDJ"});}</script></body></html>
