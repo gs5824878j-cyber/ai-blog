@@ -387,7 +387,11 @@
     if(!parent)return;
     const grid=parent.querySelector('.debuggrid');
     if(!grid)return;
-    if(!document.getElementById('previewPointsV11')){
+    const existingPoints=document.getElementById('previewPointsV10');
+    if(existingPoints){
+      existingPoints.textContent='⭐ +300P';
+      existingPoints.classList.add('v11-debug-btn');
+    }else if(!document.getElementById('previewPointsV11')){
       const p=document.createElement('button');
       p.id='previewPointsV11';p.className='v11-debug-btn';p.textContent='⭐ +300P';
       p.onclick=()=>{
