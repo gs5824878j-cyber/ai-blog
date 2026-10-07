@@ -2,8 +2,8 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Google Search ConsoleとGoogle Analyticsを入れてみた。結果、誰も来ていなかった。 | 40代のAI制作ノート</title>
-<meta name="description" content="検索とアクセスを調べる準備は万全。期待して開いた画面には、見事な「0」が並んでいました。">
+<title>AIに頼らないと、自分のブログも直せない。便利さと依存について考えた。 | 40代のAI制作ノート</title>
+<meta name="description" content="自分で作ったブログなのに、AIがいないと直せない。小さなエラーをきっかけに、AIの便利さと依存について考えました。">
 <meta name="theme-color" content="#142c29">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23142c29'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='sans-serif' font-size='21' font-weight='bold' fill='%23e5ff78'%3EN%3C/text%3E%3C/svg%3E">
 <style>
@@ -84,158 +84,193 @@ if (window.blogAnalyticsEnabled) {
 .article-heading h1{margin:0 0 14px}.article-heading .post-excerpt{margin-bottom:0}
 .article-page .post-body{overflow-wrap:anywhere}.article-page img{max-width:100%;height:auto}
 @media(max-width:700px){.post-card,.article-heading{padding:24px}.article-page{padding-top:24px}}
-</style><link rel="canonical" href="https://gs5824878j-cyber.github.io/ai-blog/article-analytics.html"></head>
+</style><link rel="canonical" href="https://gs5824878j-cyber.github.io/ai-blog/article-ai-dependence.html"></head>
 <body>
 <a class="skip" href="#main">本文へ移動</a>
 <div class="top"><header class="wrap"><a class="brand" href="index.html" aria-label="40代のAI制作ノート ホーム"><span class="logo" aria-hidden="true">N</span>40代のAI制作ノート</a><nav aria-label="メインメニュー"><a href="index.html#journal">ブログ記事</a><a href="index.html#ai-works">AI制作物</a><a href="index.html#about">このブログについて</a></nav></header></div>
-<main id="main" class="wrap article-page"><a class="article-back" href="index.html#journal">← 記事一覧に戻る</a><article class="post" id="article-analytics"><div class="article-heading"><span class="post-meta">記事 05　<time datetime="2026-10-07">2026.10.07</time>　<span class="tag">AIを使ってみた</span></span><h1 class="post-title">Google Search ConsoleとGoogle Analyticsを入れてみた。結果、誰も来ていなかった。</h1><span class="post-excerpt">検索とアクセスを調べる準備は万全。期待して開いた画面には、見事な「0」が並んでいました。</span></div><div class="post-body"><p>少しずつブログっぽくなってきました。</p>
-<p>記事も増えてきた。</p>
-<p>BTS NEWS HUBも作った。</p>
-<p>GitHub Pagesで公開もできた。</p>
-<p>そうなると、次に気になることがあります。</p>
-<p><strong>「で、誰か見てるの？」</strong></p>
-<p>ここです。</p>
-<p>せっかくブログを作ったなら、</p>
-<p>何人くらい来ているのか。</p>
-<p>どの記事が読まれているのか。</p>
-<p>Google検索から来ている人はいるのか。</p>
-<p>やっぱり気になります。</p>
-<p>そこで今回は、</p>
-<p><strong>Google Search Console</strong><br>と<br><strong>Google Analytics</strong></p>
-<p>を入れてみました。</p>
-<p>名前だけ見ると、急に本格的です。</p>
-<p>ただ、役割は意外とシンプルです。</p>
+<main id="main" class="wrap article-page"><a class="article-back" href="index.html#journal">← 記事一覧に戻る</a><article class="post" id="article-ai-dependence"><div class="article-heading"><span class="post-meta">記事 06　<time datetime="2026-10-08">2026.10.08</time>　<span class="tag">日々考えること</span></span><h1 class="post-title">AIに頼らないと、自分のブログも直せない。便利さと依存について考えた。</h1><span class="post-excerpt">自分で作ったブログなのに、AIがいないと直せない。小さなエラーをきっかけに、AIの便利さと依存について考えました。</span></div><div class="post-body">
+<p>最近、「AIが人類にとって脅威になるかもしれない」という話を目にすることが増えました。</p>
+<p>AIが人間より賢くなり、制御できなくなる。</p>
+<p>最悪の場合、人類の存続そのものに影響する。</p>
+<p>少し前までの僕は、こういう話をどこか他人事として見ていました。</p>
+<p>正直、</p>
+<p>「さすがにそこまではないだろう」</p>
+<p>と思っていました。</p>
+<p>映画の世界のような話に感じていたからです。</p>
+<p>ただ、最近自分でAIを使っていろいろなものを作るようになって、少しだけ考え方が変わりました。</p>
+<p>もちろん、</p>
+<p>「AIが明日、人類を滅ぼす」</p>
+<p>と思うようになったわけではありません。</p>
+<p>そこまでの未来は、今の僕には想像できません。</p>
+<p>ただ、</p>
+<p>「絶対にありえない話なのだろうか」</p>
+<p>と聞かれると、以前ほど簡単には否定できなくなりました。</p>
+<p>その理由は、とても小さなところにあります。</p>
+<p>このブログです。</p>
 <hr>
-<h3>Google Search Consoleは「Google検索でどう見られているか」を見るもの</h3>
-<p>まずはGoogle Search Console。</p>
-<p>ものすごく簡単に言うと、</p>
-<p><strong>Google検索の中で、自分のサイトがどう扱われているかを見るためのもの</strong></p>
-<p>です。</p>
-<p>たとえば、</p>
-<p>「Google検索に自分の記事が出ているか」</p>
-<p>「どんな言葉で検索されているか」</p>
-<p>「検索結果に何回表示されたか」</p>
-<p>「そこから何回クリックされたか」</p>
-<p>などが分かります。</p>
-<p>つまり、</p>
-<p><strong>Google検索側から見た成績表</strong></p>
-<p>みたいなものです。</p>
+<h3>僕は、自分のブログをほとんど理解していない</h3>
+<p>このブログは、AIにかなり助けてもらって作っています。</p>
+<p>文章を書く。</p>
+<p>デザインを変える。</p>
+<p>新しい記事を追加する。</p>
+<p>Webサイトのコードを修正する。</p>
+<p>そのほとんどをChatGPTにお願いしています。</p>
+<p>僕が理解していることは、本当に少しだけです。</p>
+<p>AIがWebサイトを表示するためのデータを作る。</p>
+<p>それをGitHubという場所に置く。</p>
+<p>そして、そのデータがWebサイトとして表示される。</p>
+<p>大ざっぱに言えば、それくらいです。</p>
+<p>少し前まで「GitHub」という言葉すら、ほとんど知りませんでした。</p>
+<p>AIに教えてもらいながら使っているうちに、</p>
+<p>「ここにファイルを置けばサイトが更新される」</p>
+<p>ということは分かるようになりました。</p>
+<p>でも、</p>
+<p>なぜそうなるのか。</p>
+<p>そこまで説明しろと言われると、ほとんど分かりません。</p>
 <hr>
-<h3>Google Analyticsは「サイトに来た人の動き」を見るもの</h3>
-<p>一方のGoogle Analytics。</p>
-<p>こちらは、</p>
-<p><strong>実際にサイトに来た人が、どう動いたかを見るためのもの</strong></p>
-<p>です。</p>
-<p>たとえば、</p>
-<p>何人来たのか。</p>
-<p>どのページを見たのか。</p>
-<p>どのくらい見たのか。</p>
-<p>スマホから見たのか。</p>
-<p>そんなことが分かります。</p>
-<p>僕の中では、</p>
-<p>Search Consoleが</p>
-<p><strong>「Google検索の外側から見るツール」</strong></p>
-<p>Analyticsが</p>
-<p><strong>「サイトの中に入ってからを見るツール」</strong></p>
-<p>という理解です。</p>
-<p>この2つを入れておけば、</p>
-<p>「検索される」</p>
-<p>↓</p>
-<p>「クリックされる」</p>
-<p>↓</p>
-<p>「サイトに来る」</p>
-<p>↓</p>
-<p>「記事を読む」</p>
-<p>という流れが少しずつ見えてくるはずです。</p>
+<h3>エラーが起きると、何もできない</h3>
+<p>普段はそれでも困りません。</p>
+<p>「ここを変更して」</p>
+<p>とAIに頼めば、変更してくれる。</p>
+<p>「こんなページを追加したい」</p>
+<p>と言えば、コードを作ってくれる。</p>
+<p>自分では作れなかったものが、どんどん形になっていく。</p>
+<p>ものすごく便利です。</p>
+<p>しかし、エラーが起きると状況が変わります。</p>
+<p>画面が表示されない。</p>
+<p>ボタンが動かない。</p>
+<p>GitHubでエラーが出る。</p>
+<p>そんなとき僕は、画面を見ても原因が分かりません。</p>
+<p>だから、やることは一つです。</p>
+<p>AIに聞く。</p>
+<p>「こんなエラーが出たけど、どうすればいい？」</p>
+<p>するとAIが、</p>
+<p>「この部分を修正しましょう」</p>
+<p>と教えてくれる。</p>
+<p>そして直る。</p>
+<p>僕は安心します。</p>
+<p>でも、あるときふと思いました。</p>
+<p>もし、このAIがなかったら？</p>
+<p>おそらく僕は何もできません。</p>
+<p>エラーの意味も分からない。</p>
+<p>コードのどこがおかしいのかも分からない。</p>
+<p>場合によっては、どのファイルを触ればいいのかすら分からない。</p>
+<p>自分で作ったブログなのに、</p>
+<p>自分では直せない。</p>
+<p>そこで思い浮かんだ言葉が、</p>
+<p>「砂上の楼閣」</p>
+<p>でした。</p>
+<p>見た目は立派になっていく。</p>
+<p>できることも増えていく。</p>
+<p>でも、それを支えている仕組みを自分自身はほとんど理解していない。</p>
 <hr>
-<h3>なんだか、急にブロガーっぽい</h3>
-<p>ここまで設定していると、</p>
-<p>少しテンションが上がります。</p>
-<p>Google Search Console。</p>
-<p>Google Analytics。</p>
-<p>なんか急に、</p>
-<p><strong>ちゃんと運営している人っぽい。</strong></p>
-<p>記事もある。</p>
-<p>分析ツールも入れた。</p>
-<p>あとはアクセスが増えるだけ。</p>
-<p>「もしかして、もう誰か見てるんじゃないか？」</p>
-<p>そんな期待を込めて、Google Analyticsを開いてみました。</p>
-<figure class="article-figure"><a href="analytics-realtime-zero.png" target="_blank" rel="noopener" aria-label="Google Analyticsの画面を拡大して開く"><img src="analytics-realtime-zero.png" width="1279" height="322" alt="過去4時間のアクティブユーザーが0、表示回数も0と表示されたGoogle Analyticsのリアルタイムページ" loading="lazy" decoding="async"></a><figcaption>Google Analyticsのリアルタイム画面。過去4時間のアクティブユーザー0、表示回数0。</figcaption></figure>
-<p>そして表示されたのがこちら。</p>
+<h3>AIが進化すれば、この状況はもっと増えると思う</h3>
+<p>今後、AIはさらに便利になっていくでしょう。</p>
+<p>今はまだ、</p>
+<p>ファイルをダウンロードしたり、</p>
+<p>GitHubにアップしたり、</p>
+<p>設定画面を操作したり、</p>
+<p>人間がやらなければならない作業が残っています。</p>
+<p>でも、これも少しずつ減っていくのだと思います。</p>
+<p>将来は、</p>
+<p>「こんなサービスを作って」</p>
+<p>と言うだけで、</p>
+<p>設計して、</p>
+<p>作って、</p>
+<p>公開して、</p>
+<p>問題が起きたら修正して、</p>
+<p>全部AIがやってくれるかもしれません。</p>
+<p>それは、とても便利な未来です。</p>
+<p>僕も間違いなく使います。</p>
+<p>ただ、そのとき、</p>
+<p>人間は今よりも仕組みを理解しなくなるのではないか。</p>
+<p>そんなことも考えます。</p>
+<p>今の僕がブログの仕組みをよく分からないまま使っているように、</p>
+<p>企業のシステムも、</p>
+<p>社会の仕組みも、</p>
+<p>もっと重要なインフラも、</p>
+<p>「AIがやってくれるから大丈夫」</p>
+<p>となっていく可能性があります。</p>
+<p>そして問題が起きたとき、</p>
+<p>人間側に直せる人がいない。</p>
+<p>AIに聞くしかない。</p>
+<p>そんな状態になったらどうなるのでしょうか。</p>
 <hr>
-<h3 class="zero-heading">0</h3>
-<p class="zero-stat"><strong>アクティブユーザー <span class="zero-number">0</span></strong></p>
-<p class="zero-stat"><strong>表示回数 <span class="zero-number">0</span></strong></p>
-<p>……</p>
-<p>見事です。</p>
-<p>誰もいません。</p>
-<p>リアルタイムページという名前なのに、</p>
-<p><strong>リアルタイムで誰もいない。</strong></p>
-<p>「ひょっとしたら1人くらい」</p>
-<p>と思っていた自分が甘かった。</p>
-<p>0です。</p>
-<p>しかもアクティブユーザーだけでなく、</p>
-<p>表示回数も0。</p>
-<p>ここまできれいに何もないと、逆に気持ちがいいです。</p>
+<h3>「AIが支配する」は、もっと地味な形かもしれない</h3>
+<p>「AIが人類を支配する」</p>
+<p>という言葉を聞くと、</p>
+<p>僕は以前、</p>
+<p>ロボットが人間に反乱するような世界を想像していました。</p>
+<p>でも最近は、</p>
+<p>必ずしもそんな分かりやすい形ではないのかもしれないと思っています。</p>
+<p>人間が便利さを求めて、</p>
+<p>少しずつAIに任せる。</p>
+<p>さらに便利になる。</p>
+<p>もっと任せる。</p>
+<p>そのうち、</p>
+<p>AIなしでは仕事ができない。</p>
+<p>AIなしではシステムを直せない。</p>
+<p>AIなしでは重要な判断すら難しい。</p>
+<p>そうなったとき、</p>
+<p>誰かが「AIに支配された」と宣言しなくても、</p>
+<p>実質的にはAIなしでは社会が動かない状態</p>
+<p>になっているかもしれません。</p>
+<p>それを「支配」と呼ぶのかは分かりません。</p>
+<p>ただ、</p>
+<p>依存という言葉なら、かなり想像できます。</p>
 <hr>
-<h3>分析ツールは入れた。でも分析するデータがない</h3>
-<p>Google Analyticsを入れれば、</p>
-<p>アクセス分析ができる。</p>
-<p>たしかにその通りです。</p>
-<p>ただし、ひとつ条件がありました。</p>
-<p><strong>アクセスがあれば。</strong></p>
-<p>今の僕のブログには、</p>
-<p>高度な分析より先に必要なものがあります。</p>
-<p>人です。</p>
-<p>「どの記事が人気なのか」</p>
-<p>を分析する前に、</p>
-<p>まず誰かに読んでもらわないといけません。</p>
-<p>「滞在時間が長いページはどれか」</p>
-<p>を調べる前に、</p>
-<p>まず滞在してもらわないといけません。</p>
-<p>完全に順番を飛ばしていました。</p>
+<h3>便利だからこそ、少し怖い</h3>
+<p>僕はAIを否定したいわけではありません。</p>
+<p>むしろ逆です。</p>
+<p>AIがなければ、このブログを作ろうとすら思わなかったでしょう。</p>
+<p>Webサイトを作ることも、</p>
+<p>アプリを作ることも、</p>
+<p>おそらく挑戦していません。</p>
+<p>僕のような初心者でも、</p>
+<p>「作ってみたい」</p>
+<p>と思ったものを実際に形にできる。</p>
+<p>これは、本当にすごいことだと思います。</p>
+<p>だからこそ怖いのです。</p>
+<p>使いにくいものなら、ここまで依存することはありません。</p>
+<p>便利すぎるから、依存してしまう。</p>
+<p>そして僕自身、すでにかなりその入口に立っています。</p>
 <hr>
-<h3>でも、これはスタート地点としては分かりやすい</h3>
-<p>少し寂しい結果ではあります。</p>
-<p>でも逆に、</p>
-<p><strong>0からスタートしたことが数字で残る</strong></p>
-<p>のは面白いなとも思っています。</p>
-<p>これが1になって、</p>
-<p>10になって、</p>
-<p>100になっていくのか。</p>
+<h3>AIに任せながら、少しだけ理解する</h3>
+<p>だからといって、</p>
+<p>今からプログラミングを全部勉強して、</p>
+<p>AIを使わずにブログを作ろう、</p>
+<p>とも思いません。</p>
+<p>それではAIを使う意味がありません。</p>
+<p>ただ、</p>
+<p>全部を理解する必要はなくても、</p>
+<p>自分が何をAIに任せているのかくらいは分かっていたほうがいい。</p>
+<p>最近はそう思うようになりました。</p>
+<p>このブログを始めて、</p>
+<p>GitHubというものを知りました。</p>
+<p>HTMLというものも少し知りました。</p>
+<p>Webサイトがどうやって公開されているのかも、以前よりは分かるようになりました。</p>
+<p>全部、AIを使わなければ学ばなかったことです。</p>
+<p>AIに依存することで、何も考えなくなるのか。</p>
 <p>それとも、</p>
-<p>半年後も0に近いのか。</p>
-<p>今の段階では全く分かりません。</p>
-<p>だからこそ、このブログでは、</p>
-<p>「最初からアクセスがありました」</p>
-<p>ではなく、</p>
-<p><strong>本当に誰も見ていない状態からどうなるのか</strong></p>
-<p>も、そのまま記録していこうと思います。</p>
+<p>AIを使うことで、今まで知らなかったことを学べるのか。</p>
+<p>たぶん、この違いは結構大きい気がします。</p>
 <hr>
-<h3>今は「分析」より「知ってもらう」が先</h3>
-<p>今回、Google Search ConsoleとGoogle Analyticsを入れてみて、</p>
-<p>ひとつ分かったことがあります。</p>
-<p>ツールを入れれば、</p>
-<p>勝手に人が来るわけではない。</p>
-<p>当たり前ですが、</p>
-<p><strong>分析ツールは集客ツールではありません。</strong></p>
-<p>Google Search Consoleも、</p>
-<p>Google Analyticsも、</p>
-<p>検索での表示や、サイトに来た後の動きを教えてくれるものです。</p>
-<p>今の僕に必要なのは、</p>
-<p>もっと記事を書くこと。</p>
-<p>作ったものを増やすこと。</p>
-<p>そして、</p>
-<p>このブログの存在を知ってもらうこと。</p>
-<p>まずはそこからです。</p>
-<hr>
-<p>というわけで、</p>
-<p>Google Search ConsoleとGoogle Analyticsの導入は完了。</p>
-<p>ブログの分析体制も完成。</p>
-<p>そして現在の分析結果は、</p>
-<p class="zero-stat"><strong><span class="zero-number">0</span>人。</strong></p>
-<p>これ以上ないくらい、</p>
-<p>分かりやすいスタート地点になりました。</p>
-<p>次にこの画面を見るときは、</p>
-<p>せめて「1」が出ていてほしい。</p>
-<p>今のところ、目標はかなり控えめです。</p></div></article><a class="article-back" href="index.html#journal">← 記事一覧に戻る</a></main><footer><div class="wrap footer-inner"><span>© 2026 40代のAI制作ノート · Ver.1.8</span><span>小さく作って、少しずつ育てる。</span></div></footer><script>if(window.blogAnalyticsEnabled){gtag("event","article_open",{"article_id": "article-analytics", "article_title": "Google Search ConsoleとGoogle Analyticsを入れてみた。結果、誰も来ていなかった。", "send_to": "G-NBJ7466KDJ"});}</script></body></html>
+<p>「AIが人類を滅ぼす」</p>
+<p>という話が本当に起きるのか、僕には分かりません。</p>
+<p>今でも、そこまでの未来を具体的に想像することはできません。</p>
+<p>でも、</p>
+<p>「そんなこと絶対にありえない」</p>
+<p>と笑う気持ちは、以前より少し減りました。</p>
+<p>きっかけは壮大な未来予測ではありません。</p>
+<p>ただ、</p>
+<p>自分で作ったブログにエラーが出たとき、</p>
+<p>AIに聞かないと何もできなかった。</p>
+<p>それだけです。</p>
+<p>とても小さな出来事です。</p>
+<p>でも、そのときふと、</p>
+<p>「社会全体がこれと同じ状態になったら？」</p>
+<p>と考えました。</p>
+<p>便利さと依存は、たぶんかなり近い場所にあります。</p>
+<p>AIを使えば使うほど、</p>
+<p>そのことを少し意識しておいたほうがいいのかもしれません。</p>
+</div></article><a class="article-back" href="index.html#journal">← 記事一覧に戻る</a></main><footer><div class="wrap footer-inner"><span>© 2026 40代のAI制作ノート · Ver.1.8</span><span>小さく作って、少しずつ育てる。</span></div></footer><script>if(window.blogAnalyticsEnabled){gtag("event","article_open",{"article_id": "article-ai-dependence", "article_title": "AIに頼らないと、自分のブログも直せない。便利さと依存について考えた。", "send_to": "G-NBJ7466KDJ"});}</script></body></html>

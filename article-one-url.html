@@ -2,8 +2,8 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Google Search ConsoleとGoogle Analyticsを入れてみた。結果、誰も来ていなかった。 | 40代のAI制作ノート</title>
-<meta name="description" content="検索とアクセスを調べる準備は万全。期待して開いた画面には、見事な「0」が並んでいました。">
+<title>訪問者0で心が折れそうになったので、AIに相談して「1記事1URL」にしてみた。 | 40代のAI制作ノート</title>
+<meta name="description" content="訪問者0が続き、AIに相談。記事ごとに専用の住所を作る「1記事1URL」を知り、ブログを少しずつ改善した記録。">
 <meta name="theme-color" content="#142c29">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23142c29'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='sans-serif' font-size='21' font-weight='bold' fill='%23e5ff78'%3EN%3C/text%3E%3C/svg%3E">
 <style>
@@ -84,158 +84,204 @@ if (window.blogAnalyticsEnabled) {
 .article-heading h1{margin:0 0 14px}.article-heading .post-excerpt{margin-bottom:0}
 .article-page .post-body{overflow-wrap:anywhere}.article-page img{max-width:100%;height:auto}
 @media(max-width:700px){.post-card,.article-heading{padding:24px}.article-page{padding-top:24px}}
-</style><link rel="canonical" href="https://gs5824878j-cyber.github.io/ai-blog/article-analytics.html"></head>
+</style><link rel="canonical" href="https://gs5824878j-cyber.github.io/ai-blog/article-one-url.html"></head>
 <body>
 <a class="skip" href="#main">本文へ移動</a>
 <div class="top"><header class="wrap"><a class="brand" href="index.html" aria-label="40代のAI制作ノート ホーム"><span class="logo" aria-hidden="true">N</span>40代のAI制作ノート</a><nav aria-label="メインメニュー"><a href="index.html#journal">ブログ記事</a><a href="index.html#ai-works">AI制作物</a><a href="index.html#about">このブログについて</a></nav></header></div>
-<main id="main" class="wrap article-page"><a class="article-back" href="index.html#journal">← 記事一覧に戻る</a><article class="post" id="article-analytics"><div class="article-heading"><span class="post-meta">記事 05　<time datetime="2026-10-07">2026.10.07</time>　<span class="tag">AIを使ってみた</span></span><h1 class="post-title">Google Search ConsoleとGoogle Analyticsを入れてみた。結果、誰も来ていなかった。</h1><span class="post-excerpt">検索とアクセスを調べる準備は万全。期待して開いた画面には、見事な「0」が並んでいました。</span></div><div class="post-body"><p>少しずつブログっぽくなってきました。</p>
-<p>記事も増えてきた。</p>
-<p>BTS NEWS HUBも作った。</p>
-<p>GitHub Pagesで公開もできた。</p>
-<p>そうなると、次に気になることがあります。</p>
-<p><strong>「で、誰か見てるの？」</strong></p>
-<p>ここです。</p>
-<p>せっかくブログを作ったなら、</p>
-<p>何人くらい来ているのか。</p>
-<p>どの記事が読まれているのか。</p>
-<p>Google検索から来ている人はいるのか。</p>
-<p>やっぱり気になります。</p>
-<p>そこで今回は、</p>
-<p><strong>Google Search Console</strong><br>と<br><strong>Google Analytics</strong></p>
-<p>を入れてみました。</p>
-<p>名前だけ見ると、急に本格的です。</p>
-<p>ただ、役割は意外とシンプルです。</p>
-<hr>
-<h3>Google Search Consoleは「Google検索でどう見られているか」を見るもの</h3>
-<p>まずはGoogle Search Console。</p>
-<p>ものすごく簡単に言うと、</p>
-<p><strong>Google検索の中で、自分のサイトがどう扱われているかを見るためのもの</strong></p>
-<p>です。</p>
-<p>たとえば、</p>
-<p>「Google検索に自分の記事が出ているか」</p>
-<p>「どんな言葉で検索されているか」</p>
-<p>「検索結果に何回表示されたか」</p>
-<p>「そこから何回クリックされたか」</p>
-<p>などが分かります。</p>
-<p>つまり、</p>
-<p><strong>Google検索側から見た成績表</strong></p>
-<p>みたいなものです。</p>
-<hr>
-<h3>Google Analyticsは「サイトに来た人の動き」を見るもの</h3>
-<p>一方のGoogle Analytics。</p>
-<p>こちらは、</p>
-<p><strong>実際にサイトに来た人が、どう動いたかを見るためのもの</strong></p>
-<p>です。</p>
-<p>たとえば、</p>
-<p>何人来たのか。</p>
-<p>どのページを見たのか。</p>
-<p>どのくらい見たのか。</p>
-<p>スマホから見たのか。</p>
-<p>そんなことが分かります。</p>
-<p>僕の中では、</p>
-<p>Search Consoleが</p>
-<p><strong>「Google検索の外側から見るツール」</strong></p>
-<p>Analyticsが</p>
-<p><strong>「サイトの中に入ってからを見るツール」</strong></p>
-<p>という理解です。</p>
-<p>この2つを入れておけば、</p>
-<p>「検索される」</p>
-<p>↓</p>
-<p>「クリックされる」</p>
-<p>↓</p>
-<p>「サイトに来る」</p>
-<p>↓</p>
-<p>「記事を読む」</p>
-<p>という流れが少しずつ見えてくるはずです。</p>
-<hr>
-<h3>なんだか、急にブロガーっぽい</h3>
-<p>ここまで設定していると、</p>
-<p>少しテンションが上がります。</p>
-<p>Google Search Console。</p>
-<p>Google Analytics。</p>
-<p>なんか急に、</p>
-<p><strong>ちゃんと運営している人っぽい。</strong></p>
-<p>記事もある。</p>
-<p>分析ツールも入れた。</p>
-<p>あとはアクセスが増えるだけ。</p>
-<p>「もしかして、もう誰か見てるんじゃないか？」</p>
-<p>そんな期待を込めて、Google Analyticsを開いてみました。</p>
-<figure class="article-figure"><a href="analytics-realtime-zero.png" target="_blank" rel="noopener" aria-label="Google Analyticsの画面を拡大して開く"><img src="analytics-realtime-zero.png" width="1279" height="322" alt="過去4時間のアクティブユーザーが0、表示回数も0と表示されたGoogle Analyticsのリアルタイムページ" loading="lazy" decoding="async"></a><figcaption>Google Analyticsのリアルタイム画面。過去4時間のアクティブユーザー0、表示回数0。</figcaption></figure>
-<p>そして表示されたのがこちら。</p>
-<hr>
-<h3 class="zero-heading">0</h3>
-<p class="zero-stat"><strong>アクティブユーザー <span class="zero-number">0</span></strong></p>
-<p class="zero-stat"><strong>表示回数 <span class="zero-number">0</span></strong></p>
+<main id="main" class="wrap article-page"><a class="article-back" href="index.html#journal">← 記事一覧に戻る</a><article class="post" id="article-one-url"><div class="article-heading"><span class="post-meta">記事 08　<time datetime="2026-10-08">2026.10.08</time>　<span class="tag">AIを使ってみた</span></span><h1 class="post-title">訪問者0で心が折れそうになったので、AIに相談して「1記事1URL」にしてみた。</h1><span class="post-excerpt">訪問者0が続き、AIに相談。記事ごとに専用の住所を作る「1記事1URL」を知り、ブログを少しずつ改善した記録。</span></div><div class="post-body"><p>ブログを始めて、記事も少しずつ増えてきました。</p>
+<p>AIでWebサイトを作った。</p>
+<p>記事も書いた。</p>
+<p>Google Search Consoleも入れた。</p>
+<p>Google Analyticsも入れた。</p>
+<p>ここまでやると、どうしても期待してしまいます。</p>
+<p>「そろそろ誰か来るんじゃないか」</p>
+<p>ところが。</p>
+<p>Google Analyticsを開く。</p>
+<p>0人。</p>
+<p>少し時間を置いて、もう一度見る。</p>
+<p>0人。</p>
+<p>次の日も見る。</p>
+<p>0人。</p>
 <p>……</p>
-<p>見事です。</p>
-<p>誰もいません。</p>
-<p>リアルタイムページという名前なのに、</p>
-<p><strong>リアルタイムで誰もいない。</strong></p>
-<p>「ひょっとしたら1人くらい」</p>
-<p>と思っていた自分が甘かった。</p>
-<p>0です。</p>
-<p>しかもアクティブユーザーだけでなく、</p>
-<p>表示回数も0。</p>
-<p>ここまできれいに何もないと、逆に気持ちがいいです。</p>
+<p>きれいなくらい誰も来ません。</p>
+<p>最初は、</p>
+<p>「まあ、始めたばかりだし」</p>
+<p>と思っていました。</p>
+<p>でも記事が増えても、</p>
+<p>0。</p>
+<p>また0。</p>
+<p>さすがに少しだけ、</p>
+<p>「これ、誰にも見られないまま終わるのでは？」</p>
+<p>と思い始めました。</p>
+<p>ブログを作ること自体は楽しい。</p>
+<p>でも、公開している以上、</p>
+<p>やっぱり誰かには読んでもらいたい。</p>
+<p>そこでまた、</p>
+<p>AIに聞きました。</p>
 <hr>
-<h3>分析ツールは入れた。でも分析するデータがない</h3>
-<p>Google Analyticsを入れれば、</p>
-<p>アクセス分析ができる。</p>
-<p>たしかにその通りです。</p>
-<p>ただし、ひとつ条件がありました。</p>
-<p><strong>アクセスがあれば。</strong></p>
-<p>今の僕のブログには、</p>
-<p>高度な分析より先に必要なものがあります。</p>
-<p>人です。</p>
-<p>「どの記事が人気なのか」</p>
-<p>を分析する前に、</p>
-<p>まず誰かに読んでもらわないといけません。</p>
-<p>「滞在時間が長いページはどれか」</p>
-<p>を調べる前に、</p>
-<p>まず滞在してもらわないといけません。</p>
-<p>完全に順番を飛ばしていました。</p>
+<h3>「どうしたらアクセス増える？」</h3>
+<p>かなりそのまま聞きました。</p>
+<p>「記事を書いてるけど、訪問者0なんだけど」</p>
+<p>するとAIから、</p>
+<p>いくつか改善点を教えてもらいました。</p>
+<p>その中で、</p>
+<p>僕が一番気になったのが、</p>
+<p>「1記事1URLにする」</p>
+<p>という話でした。</p>
+<p>最初は、</p>
+<p>意味がよく分かりませんでした。</p>
 <hr>
-<h3>でも、これはスタート地点としては分かりやすい</h3>
-<p>少し寂しい結果ではあります。</p>
+<h3>そもそも「1記事1URL」って何？</h3>
+<p>僕のブログは最初、</p>
+<p>ひとつのページの中に、</p>
+<p>複数の記事を入れる形でした。</p>
+<p>イメージとしては、</p>
+<p>大きな1枚の紙の中に、</p>
+<p>記事1、</p>
+<p>記事2、</p>
+<p>記事3、</p>
+<p>と並べている感じです。</p>
+<p>見た目としては、それでも普通に読めます。</p>
+<p>でもWebの世界では、</p>
+<p>記事ごとに別の住所を持たせた方が分かりやすい。</p>
+<p>これが、</p>
+<p>1記事1URL</p>
+<p>です。</p>
+<p>たとえば、</p>
+<p>トップページが、</p>
+<p>example.com</p>
+<p>だとすると、</p>
+<p>記事Aは、</p>
+<p>example.com/article-a</p>
+<p>記事Bは、</p>
+<p>example.com/article-b</p>
+<p>という感じです。</p>
+<p>つまり、</p>
+<p>記事ごとに専用の住所を作る</p>
+<p>ということです。</p>
+<hr>
+<h3>なぜ記事ごとにURLを分けるのか</h3>
+<p>ここも、初心者の僕には最初よく分かりませんでした。</p>
+<p>AIに聞いてみると、</p>
+<p>理由はいくつかありました。</p>
+<p>まず、</p>
+<p>Googleが記事ごとの内容を理解しやすくなる。</p>
+<p>ひとつのページに全部の記事が入っていると、</p>
+<p>Googleから見たときに、</p>
+<p>「このページは結局何について書いているの？」</p>
+<p>となりやすい。</p>
+<p>でも記事ごとにURLが分かれていれば、</p>
+<p>そのページが何について書いているのか、</p>
+<p>より分かりやすくなります。</p>
+<p>もうひとつは、</p>
+<p>記事単体で共有しやすいこと。</p>
+<p>たとえば、</p>
+<p>「AIで九九アプリを作った記事だけ見てほしい」</p>
+<p>と思ったとき。</p>
+<p>1記事1URLなら、</p>
+<p>その記事のURLだけ送れます。</p>
+<p>でも全部の記事が同じページにあると、</p>
+<p>「このページの下の方にある記事を見て」</p>
+<p>みたいなことになります。</p>
+<p>これは地味ですが、かなり不便です。</p>
+<hr>
+<h3>検索結果にも出しやすくなる</h3>
+<p>さらに、</p>
+<p>Google Search Consoleで見たときも、</p>
+<p>記事ごとにURLが分かれていた方が分かりやすい。</p>
+<p>どの記事が検索に出たのか。</p>
+<p>どの記事がクリックされたのか。</p>
+<p>どの記事が全然読まれていないのか。</p>
+<p>それぞれ別々に見られるようになります。</p>
+<p>ここでようやく、</p>
+<p>僕も理解しました。</p>
+<p>「ブログって、記事を書くことだけじゃなくて、記事ごとに入口を作る必要があるんだ」</p>
+<p>と。</p>
+<hr>
+<h3>ということで、ブログの構造を変更</h3>
+<p>そこで、</p>
+<p>これまでひとつのページにまとめていた記事を、</p>
+<p>1記事1URL</p>
+<p>に変えることにしました。</p>
+<p>もちろん、</p>
+<p>自分でコードを書いて変更したわけではありません。</p>
+<p>またAIです。</p>
+<p>「今の記事を、1記事ごとに別URLになるように変更して」</p>
+<p>とお願いしました。</p>
+<p>すると、</p>
+<p>HTMLの構造を分けたり、</p>
+<p>記事一覧から各記事へリンクするようにしたり、</p>
+<p>必要な修正をしてくれます。</p>
+<p>僕はそのファイルを、</p>
+<p>GitHubにアップ。</p>
+<p>また少しブログらしくなりました。</p>
+<hr>
+<h3>ただし、これでアクセスが増えるとは限らない</h3>
+<p>ここは大事です。</p>
+<p>1記事1URLにしたからといって、</p>
+<p>次の日から、</p>
+<p>100人、</p>
+<p>1000人、</p>
+<p>と来るわけではありません。</p>
+<p>そんな魔法ではありません。</p>
+<p>むしろ今のところ、</p>
+<p>相変わらず静かです。</p>
+<p>でも、</p>
+<p>少なくとも、</p>
+<p>Googleに見つけてもらいやすい形には近づいた。</p>
+<p>記事ごとに検索される可能性もできた。</p>
+<p>URLを直接共有することもできる。</p>
+<p>今までより、</p>
+<p>ブログとしてはちゃんとした形になったと思います。</p>
+<hr>
+<h3>アクセス0でも、やることはある</h3>
+<p>訪問者0という数字を見ると、</p>
+<p>正直少し心が折れます。</p>
+<p>せっかく記事を書いているのに、</p>
+<p>誰も見ていない。</p>
 <p>でも逆に、</p>
-<p><strong>0からスタートしたことが数字で残る</strong></p>
-<p>のは面白いなとも思っています。</p>
-<p>これが1になって、</p>
-<p>10になって、</p>
-<p>100になっていくのか。</p>
-<p>それとも、</p>
-<p>半年後も0に近いのか。</p>
-<p>今の段階では全く分かりません。</p>
-<p>だからこそ、このブログでは、</p>
-<p>「最初からアクセスがありました」</p>
-<p>ではなく、</p>
-<p><strong>本当に誰も見ていない状態からどうなるのか</strong></p>
-<p>も、そのまま記録していこうと思います。</p>
+<p>0だからこそ、</p>
+<p>改善点もたくさんあります。</p>
+<p>今回も、</p>
+<p>もしアクセスが普通に来ていたら、</p>
+<p>「1記事1URLにしよう」</p>
+<p>なんて考えなかったかもしれません。</p>
+<p>0人だったから、</p>
+<p>AIに相談した。</p>
+<p>AIに相談したから、</p>
+<p>ブログの作りをひとつ改善できた。</p>
+<p>そう考えると、</p>
+<p>0も悪くありません。</p>
+<p>……</p>
+<p>いや、</p>
+<p>できれば早く1になってほしいですが。</p>
 <hr>
-<h3>今は「分析」より「知ってもらう」が先</h3>
-<p>今回、Google Search ConsoleとGoogle Analyticsを入れてみて、</p>
-<p>ひとつ分かったことがあります。</p>
-<p>ツールを入れれば、</p>
-<p>勝手に人が来るわけではない。</p>
-<p>当たり前ですが、</p>
-<p><strong>分析ツールは集客ツールではありません。</strong></p>
-<p>Google Search Consoleも、</p>
-<p>Google Analyticsも、</p>
-<p>検索での表示や、サイトに来た後の動きを教えてくれるものです。</p>
-<p>今の僕に必要なのは、</p>
-<p>もっと記事を書くこと。</p>
-<p>作ったものを増やすこと。</p>
-<p>そして、</p>
-<p>このブログの存在を知ってもらうこと。</p>
-<p>まずはそこからです。</p>
-<hr>
-<p>というわけで、</p>
-<p>Google Search ConsoleとGoogle Analyticsの導入は完了。</p>
-<p>ブログの分析体制も完成。</p>
-<p>そして現在の分析結果は、</p>
-<p class="zero-stat"><strong><span class="zero-number">0</span>人。</strong></p>
-<p>これ以上ないくらい、</p>
-<p>分かりやすいスタート地点になりました。</p>
-<p>次にこの画面を見るときは、</p>
-<p>せめて「1」が出ていてほしい。</p>
-<p>今のところ、目標はかなり控えめです。</p></div></article><a class="article-back" href="index.html#journal">← 記事一覧に戻る</a></main><footer><div class="wrap footer-inner"><span>© 2026 40代のAI制作ノート · Ver.1.8</span><span>小さく作って、少しずつ育てる。</span></div></footer><script>if(window.blogAnalyticsEnabled){gtag("event","article_open",{"article_id": "article-analytics", "article_title": "Google Search ConsoleとGoogle Analyticsを入れてみた。結果、誰も来ていなかった。", "send_to": "G-NBJ7466KDJ"});}</script></body></html>
+<h3>少しずつ「ブログっぽく」なってきた</h3>
+<p>ブログを始めたときは、</p>
+<p>とにかく記事が表示されればいいと思っていました。</p>
+<p>でも実際に始めると、</p>
+<p>記事を書く。</p>
+<p>公開する。</p>
+<p>Googleに見つけてもらう。</p>
+<p>記事ごとにURLを分ける。</p>
+<p>アクセスを見る。</p>
+<p>また改善する。</p>
+<p>少しずつ、</p>
+<p>やることが増えていきます。</p>
+<p>でも、</p>
+<p>これも全部、</p>
+<p>実際に始めなければ知らなかったことです。</p>
+<p>今回覚えたのは、</p>
+<p>「1記事1URL」</p>
+<p>という考え方。</p>
+<p>初心者の僕からすると、</p>
+<p>たったこれだけでも、</p>
+<p>かなりブログ運営している感が出てきました。</p>
+<p>そして今の目標は、</p>
+<p>SEOで上位表示でも、</p>
+<p>月間1万PVでもありません。</p>
+<p>まずは、</p>
+<p>Google Analyticsに、</p>
+<p>「1」</p>
+<p>と表示されることです。</p>
+<p>かなり現実的な目標になってきました。</p></div></article><a class="article-back" href="index.html#journal">← 記事一覧に戻る</a></main><footer><div class="wrap footer-inner"><span>© 2026 40代のAI制作ノート · Ver.1.8</span><span>小さく作って、少しずつ育てる。</span></div></footer><script>if(window.blogAnalyticsEnabled){gtag("event","article_open",{"article_id": "article-one-url", "article_title": "訪問者0で心が折れそうになったので、AIに相談して「1記事1URL」にしてみた。", "send_to": "G-NBJ7466KDJ"});}</script></body></html>
