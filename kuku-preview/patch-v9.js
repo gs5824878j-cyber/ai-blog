@@ -383,5 +383,3 @@
 
   ensureV9Settings();injectStyles();settingsUi();renderSettingsV9();homeUi();
 })();
-// load v10 preview/growth patch
-(function(){const s=document.createElement('script');s.src='./patch-v10.js?v=10';document.head.appendChild(s)})();
