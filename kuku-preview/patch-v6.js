@@ -205,5 +205,3 @@
   renderGoalSetting();
   home();
 })();
-// load v7 economy patch
-(function(){const s=document.createElement('script');s.src='./patch-v7.js?v=7';document.head.appendChild(s)})();
