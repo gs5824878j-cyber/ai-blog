@@ -14,5 +14,12 @@
     "html": "ai-dependence.html",
     "css": "ai-dependence.css",
     "assets": []
+  },
+  {
+    "id": "article-one-url",
+    "publish_at": "2026-10-08T07:00:00+09:00",
+    "html": "one-url.html",
+    "css": "one-url.css",
+    "assets": []
   }
 ]
