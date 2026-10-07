@@ -48,13 +48,288 @@ if (window.blogAnalyticsEnabled) {
 #article-analytics .zero-stat{background:var(--paper);padding:12px 18px;border-left:4px solid var(--ink);border-radius:4px}
 #article-analytics .zero-number{font-size:1.65em;line-height:1.3;font-weight:850}
 </style>
+<style id="scheduled-style-article-kuku">
+#article-kuku .post-body{overflow-wrap:anywhere}
+#article-kuku .post-body hr{border:0;border-top:1px solid var(--line);margin:38px 0}
+#article-kuku .post-body h4{font-size:19px;margin:28px 0 16px}
+#article-kuku .kuku-compare-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+#article-kuku .kuku-comparison{margin:30px 0}
+#article-kuku .kuku-comparison-note{font-size:13px;color:var(--muted);line-height:1.8}
+#article-kuku .kuku-compare-grid figure{margin:0;min-width:0;display:flex;flex-direction:column}
+#article-kuku .kuku-diagram{padding:20px;border:1px solid var(--line);border-radius:12px;background:#f3f6f4;flex:1}
+#article-kuku .kuku-diagram-final{background:#f1f6df}
+#article-kuku .kuku-step{font-size:12px;font-weight:800;letter-spacing:.12em;color:var(--muted)}
+#article-kuku .kuku-diagram h4{margin:8px 0 18px;font-size:19px}
+#article-kuku .kuku-symbol{background:var(--ink);color:var(--accent);border-radius:9px;text-align:center;font-size:23px;font-weight:800;padding:20px 6px;margin-bottom:18px}
+#article-kuku .kuku-feature{background:#fff;border:1px solid var(--line);border-radius:7px;padding:10px 12px;margin-bottom:9px;font-size:14px;line-height:1.7}
+#article-kuku .kuku-diagram-summary{font-size:14px;line-height:1.8;margin:18px 0 0}
+#article-kuku figcaption{font-size:13px;line-height:1.8;color:var(--muted);padding:12px 2px}
+#article-kuku .kuku-revisions{text-align:center;padding:14px;background:#edf3e7;border-radius:8px;font-size:15px;margin:16px 0 0}
+@media(max-width:680px){#article-kuku .kuku-compare-grid{grid-template-columns:minmax(0,1fr)}#article-kuku .kuku-diagram{padding:18px}}
+
+#work-kuku{margin-top:24px}
+</style>
 </head>
 <body>
 <a class="skip" href="#main">本文へ移動</a>
 <div class="top"><header class="wrap"><a class="brand" href="#" aria-label="40代のAI制作ノート ホーム"><span class="logo" aria-hidden="true">N</span>40代のAI制作ノート</a><nav aria-label="メインメニュー"><a href="#journal">ブログ記事</a><a href="#ai-works">AI制作物</a><a href="#about">このブログについて</a></nav></header></div>
 <main id="main" class="wrap">
 <section class="hero" aria-labelledby="hero-title"><div><p class="eyebrow">A SMALL START, WITH AI.</p><h1 id="hero-title">40代、会社員。<br>AIと一緒に、<br><span class="highlight">作ってみる。</span></h1><p class="lead">小さなWebサービスを作り、公開して、<br>いつか収益化まで。<br>挑戦の過程と、日々考えていることを綴るブログ。</p></div><aside class="hero-note"><p class="eyebrow">このブログで試すこと</p><p class="note-title">「こんなのがあったら」を、<br>ひとつずつ形に。</p><ol class="steps"><li><b>01</b><span>AIに相談して、作る</span></li><li><b>02</b><span>公開して、使ってもらう</span></li><li><b>03</b><span>改善して、収益化を試す</span></li></ol></aside></section>
-<section id="journal" class="section" aria-labelledby="journal-title"><div class="section-head"><h2 id="journal-title">ブログ記事</h2><p>全5記事 · AIで試したこと、日々の気づき。</p></div>
+<section id="journal" class="section" aria-labelledby="journal-title"><div class="section-head"><h2 id="journal-title">ブログ記事</h2><p>全6記事 · AIで試したこと、日々の気づき。</p></div>
+<details class="post" id="article-kuku"><summary><span class="post-meta">記事 07　<time datetime="2026-10-07">2026.10.07</time>　<span class="tag">AIで作ってみた</span></span><span class="post-title">子供のためにAIで九九アプリを作ってみた。一発では全然できなかった。</span><span class="post-excerpt">子供のために作った「九九そだて」。時間選択、復習、育成――15往復以上のやり取りで、自分の欲しい形に近づけた記録。</span><span class="post-toggle"><span class="when-closed">記事を読む ＋</span><span class="when-open">記事を閉じる −</span></span></summary><div class="post-body">
+<p>今回は、④「AI制作物」で作ったものを紹介します。</p>
+<p>作ったのは、</p>
+<p><strong>子供向けの九九アプリ。</strong></p>
+<p>きっかけは単純です。</p>
+<p>自分の子供がこれから九九を覚えていく中で、</p>
+<p><strong>「少しでも楽しく覚えられるものを作れないかな」</strong></p>
+<p>と思ったことでした。</p>
+<p>市販のアプリを探すのもいい。</p>
+<p>でも、せっかく最近AIを使っていろいろ作っている。</p>
+<p>だったら、</p>
+<p><strong>自分の子供に合わせたものを、自分で作ってみよう。</strong></p>
+<p>そう考えました。</p>
+<p>もちろん、「自分で」と言っても、</p>
+<p>コードを書くのはChatGPTです。</p>
+<hr>
+<h3>最初は、お願いすればすぐできる</h3>
+<p>最初にChatGPTへ伝えたのは、</p>
+<p>「九九を覚えるためのアプリを作りたい」</p>
+<p>というような内容でした。</p>
+<p>さらに、</p>
+<p>ただ問題を解くだけでは面白くないので、</p>
+<p>・九九を覚える  <br>・問題に挑戦する  <br>・間違えた問題を復習する  <br>・クリアするとポイントがもらえる  <br>・そのポイントでキャラクターを育てる</p>
+<p>という仕組みを考えました。</p>
+<p>イメージとしては、</p>
+<p><strong>「九九＋たまごっち」</strong></p>
+<p>です。</p>
+<p>勉強したらキャラクターが育つ。</p>
+<p>これなら、子供も少しは続けてくれるんじゃないか。</p>
+<p>そう思いました。</p>
+<p>ChatGPTにお願いすると、すぐにそれらしいものができました。</p>
+<p>画面もある。</p>
+<p>ボタンもある。</p>
+<p>問題も出る。</p>
+<p>「これ、意外と簡単にできるな」</p>
+<p>最初はそう思っていました。</p>
+<p>ただ、</p>
+<p>今回もそんなに甘くありませんでした。</p>
+<hr>
+<h3>「作る」より「自分が欲しいものにする」のが大変</h3>
+<p>AIに、</p>
+<p>「九九アプリを作って」</p>
+<p>とお願いすれば、</p>
+<p>九九アプリっぽいものはかなり早く作ってくれます。</p>
+<p>でも、</p>
+<p><strong>そこからが長い。</strong></p>
+<p>実際、今回のアプリは、最初の試作から今の形になるまで、</p>
+<p><strong>少なくとも15往復以上</strong></p>
+<p>ChatGPTとやり取りしました。</p>
+<p>「ここを変えて」</p>
+<p>↓</p>
+<p>修正版ができる。</p>
+<p>↓</p>
+<p>触ってみる。</p>
+<p>↓</p>
+<p>「やっぱりここも変えたい」</p>
+<p>↓</p>
+<p>また修正版。</p>
+<p>これの繰り返しです。</p>
+<p>最初に作ってもらった時点では、</p>
+<p>「AIすごい。もう完成じゃん」</p>
+<p>くらいに思っていました。</p>
+<p>15往復後。</p>
+<p>まだ直したいところがあります。</p>
+<hr>
+<h3>「3分チャレンジ」、子供には長かった</h3>
+<p>最初のアプリには、</p>
+<p><strong>「3分チャレンジ」</strong></p>
+<p>という機能を入れていました。</p>
+<p>3分間で何問答えられるか挑戦する。</p>
+<p>ゲーム感覚もあるし、</p>
+<p>なんとなく良さそうです。</p>
+<p>でも、実際に子供のことを考えてみると、</p>
+<p>ふと思いました。</p>
+<p><strong>3分も集中して九九をやるか？</strong></p>
+<p>大人の3分は短い。</p>
+<p>でも、子供が九九の問題に集中する3分は結構長い。</p>
+<p>特に、</p>
+<p>まだ九九を覚えている途中ならなおさらです。</p>
+<p>そこで、</p>
+<p>1分、3分、5分など、</p>
+<p>チャレンジ時間を選べるようにしました。</p>
+<p>これは、実際に自分の子供を思い浮かべながら作ったから気づけた部分でした。</p>
+<p>「一般的な九九アプリ」を作るのではなく、</p>
+<p><strong>「うちの子だったらどう使うだろう？」</strong></p>
+<p>と考える。</p>
+<p>AIで自分専用のものを作る面白さは、こういうところにある気がします。</p>
+<hr>
+<h3>正解するだけではなく、「忘れた頃にもう一度」</h3>
+<p>もうひとつ入れたかったのが、</p>
+<p><strong>復習の仕組み</strong></p>
+<p>です。</p>
+<p>せっかく覚えても、時間がたてば忘れます。</p>
+<p>そこで、</p>
+<p>間違えた問題や苦手な問題を記録して、</p>
+<p>あとでもう一度出す。</p>
+<p>いわゆる、</p>
+<p><strong>「忘れそうなタイミングでもう一度やる」</strong></p>
+<p>仕組みを入れたかった。</p>
+<p>最初は単純な問題集だったものが、</p>
+<p>「間違えた問題はどうする？」</p>
+<p>「どの段を学習済みにする？」</p>
+<p>「今日の課題では何を出す？」</p>
+<p>と考えていくうちに、</p>
+<p>どんどん複雑になっていきました。</p>
+<p>さらに、</p>
+<p>間違えたときは正解を表示してから次へ進んでほしい。</p>
+<p>チャレンジの成績から苦手な段も分かるようにしたい。</p>
+<p>九九の読み方も、必要なときだけ表示したい。</p>
+<p>ポイントのルールも分かりやすくしたい。</p>
+<p>……</p>
+<p><strong>細かい。</strong></p>
+<p>でも、自分で使うことを考えると、この細かいところが気になります。</p>
+<p>そして細かい要望を出すたびに、</p>
+<p>ChatGPTとの往復が1回ずつ増えていきます。</p>
+<hr>
+<h3>一番やりたかった「育成」が、意外と難しい</h3>
+<p>今回、個人的に一番やりたかったのは、</p>
+<p><strong>育成要素</strong></p>
+<p>でした。</p>
+<p>九九を勉強するとポイントがもらえる。</p>
+<p>ポイントを使うとキャラクターが成長する。</p>
+<p>「勉強したら育つ」</p>
+<p>という仕組みです。</p>
+<p>子供からすると、</p>
+<p>「九九を10問やりなさい」</p>
+<p>より、</p>
+<p>「あと10ポイントで進化するよ」</p>
+<p>のほうが、やる気になるんじゃないか。</p>
+<p>そんな狙いでした。</p>
+<p>なので、</p>
+<p>レベル、</p>
+<p>経験値、</p>
+<p>ごほうび、</p>
+<p>育成キャラクター</p>
+<p>などを追加していきました。</p>
+<p>ただ、ここはまだ満足していません。</p>
+<p>もっとキャラクターが動いたり、</p>
+<p>見た目が変わったり、</p>
+<p>育てている感覚を強くしたい。</p>
+<p>理想を言えば、</p>
+<p>本当に「たまごっち」のように、</p>
+<p><strong>毎日少し見に行きたくなるくらいの育成要素</strong></p>
+<p>にしたい。</p>
+<p>でも、そこまで始めると、</p>
+<p>アプリ作りが終わりません。</p>
+<p>今回かなり実感したのですが、</p>
+<p>AIを使えば修正自体はできます。</p>
+<p>だからこそ、</p>
+<p><strong>「もうちょっとだけ」</strong></p>
+<p>が永遠に続きます。</p>
+<p>ここを変えたい。</p>
+<p>直した。</p>
+<p>じゃあ、こっちも変えたい。</p>
+<p>直した。</p>
+<p>今度は育成画面が気になる。</p>
+<p>……</p>
+<p>完全に終わりがありません。</p>
+<p>なので今回は、</p>
+<p><strong>ある程度のところで一度完成ということにしました。</strong></p>
+<p>育成部分は、今後また改善していこうと思っています。</p>
+<hr>
+<h3>AIなら一発完成、ではなかった</h3>
+<p>今回の九九アプリを作ってみて感じたのは、</p>
+<p>AIを使えば、</p>
+<p><strong>最初の80％くらいまではものすごく速い</strong></p>
+<p>ということです。</p>
+<p>「こんなものを作りたい」</p>
+<p>と伝えると、</p>
+<p>驚くほど早く形になります。</p>
+<p>でも、</p>
+<p>そこから、</p>
+<p>「自分が本当に使いたいもの」</p>
+<p>に近づけていくのには時間がかかります。</p>
+<p>ボタンが動かないこともありました。</p>
+<p>プレビューで触っても反応しないこともありました。</p>
+<p>仕様を変更したら、別の部分をまた直すこともありました。</p>
+<p>今回だけでも、</p>
+<p><strong>15往復以上。</strong></p>
+<p>AIに一言お願いして完成、</p>
+<p>という世界ではありませんでした。</p>
+<p>ただ、</p>
+<p>僕自身はプログラムを書けません。</p>
+<p>それでも、</p>
+<p>15回、</p>
+<p>「こうしたい」</p>
+<p>と伝えることはできます。</p>
+<p>AIがなかったら、</p>
+<p>そもそも0から1を作れなかった。</p>
+<p>でもAIがあることで、</p>
+<p>0から1を作って、</p>
+<p>1から少しずつ自分好みに近づけていくことができる。</p>
+<p>個人的には、</p>
+<p>こちらのほうがAIのすごさを実感しました。</p>
+<hr>
+<h3>最初と最後を比べてみる</h3>
+<p>最後に、</p>
+<p>最初に作った九九アプリと、</p>
+<p>今回いったん完成としたバージョンを比べてみます。</p>
+<div class="kuku-comparison" aria-label="初期版と完成版の機能比較">
+<p class="kuku-comparison-note">制作過程をもとにした機能の比較図です。実際のスクリーンショットではありません。</p>
+<div class="kuku-compare-grid">
+<figure><div class="kuku-diagram"><span class="kuku-step">START</span><h4>最初のバージョン</h4><div class="kuku-symbol" aria-hidden="true">2 × 3 ＝ ?</div><div class="kuku-feature">九九の問題に答える</div><div class="kuku-feature">3分チャレンジに挑戦</div><p class="kuku-diagram-summary">まずは「問題を解く」形に。</p></div><figcaption>最初はシンプルな九九アプリ。ここから15往復以上の修正が始まりました。</figcaption></figure>
+<figure><div class="kuku-diagram kuku-diagram-final"><span class="kuku-step">VER.1</span><h4>今回の最終版</h4><div class="kuku-symbol" aria-hidden="true">学ぶ → 育てる</div><div class="kuku-feature">1・3・5分から時間を選ぶ</div><div class="kuku-feature">学習する段・今日の課題を管理</div><div class="kuku-feature">復習・苦手問題を確認</div><div class="kuku-feature">ポイント → アイテム → 育成・進化</div><p class="kuku-diagram-summary">「うちの子が続けられる形」へ。</p></div><figcaption>復習・苦手問題・時間選択・ポイント・レベル・育成などを追加した今回の最終版。</figcaption></figure>
+</div><p class="kuku-revisions">ここまで、<strong>15往復以上</strong>のやり取り。</p></div>
+<h4>最初のバージョン</h4>
+<p>最初は、</p>
+<p>問題を解く、</p>
+<p>3分チャレンジをする、</p>
+<p>という比較的シンプルなものでした。</p>
+<p>これでも最初に見たときは、</p>
+<p><strong>「AIだけでここまで作れるのか」</strong></p>
+<p>とかなり感動しました。</p>
+<h4>今回の最終版</h4>
+<p>そこから、</p>
+<p>復習、</p>
+<p>学習する段の管理、</p>
+<p>チャレンジ時間の変更、</p>
+<p>苦手問題、</p>
+<p>ポイント、</p>
+<p>レベル、</p>
+<p>ごほうび、</p>
+<p>育成要素</p>
+<p>などを少しずつ追加しました。</p>
+<p>並べてみると、</p>
+<p>同じところから始まったとは思えないくらい変わっています。</p>
+<p>そして、この間、</p>
+<p>僕がやったことの大部分は、</p>
+<p><strong>「もっとこうして」</strong></p>
+<p>とAIにお願いしたことです。</p>
+<hr>
+<p>今回の九九アプリは、</p>
+<p>まだ完成形ではありません。</p>
+<p>特に育成部分は、</p>
+<p>もっと面白くしたい。</p>
+<p>子供が実際に使ってみれば、</p>
+<p>また別の不満も出てくると思います。</p>
+<p>でも、とりあえず一度、</p>
+<p>ここで区切ります。</p>
+<p>AIで何かを作るというのは、</p>
+<p>一発で魔法のように完成品が出てくることではなく、</p>
+<p><strong>AIと何度もやり取りしながら、自分の欲しいものに近づけていくこと</strong></p>
+<p>なのかもしれません。</p>
+<p>そして今回は、</p>
+<p>その相手が「世の中の誰か」ではなく、</p>
+<p><strong>自分の子供だった。</strong></p>
+<p>そこが、今まで作ったものとは少し違うところでした。</p>
+<p>さて。</p>
+<p>実際に使ってくれるかどうか。</p>
+<p>一番難しいテストは、</p>
+<p>これからです。</p>
+<p><a href="../kuku-sodate/" target="_blank" rel="noopener noreferrer">九九そだて Ver.1を試す</a></p>
+</div></details>
+
 <details class="post" id="article-analytics"><summary><span class="post-meta">記事 05　<time datetime="2026-10-07">2026.10.07</time>　<span class="tag">AIを使ってみた</span></span><span class="post-title">Google Search ConsoleとGoogle Analyticsを入れてみた。結果、誰も来ていなかった。</span><span class="post-excerpt">検索とアクセスを調べる準備は万全。期待して開いた画面には、見事な「0」が並んでいました。</span><span class="post-toggle"><span class="when-closed">記事を読む ＋</span><span class="when-open">記事を閉じる −</span></span></summary><div class="post-body"><p>少しずつブログっぽくなってきました。</p>
 <p>記事も増えてきた。</p>
 <p>BTS NEWS HUBも作った。</p>
@@ -399,7 +674,7 @@ if (window.blogAnalyticsEnabled) {
 <details class="post" id="article-start"><summary><span class="post-meta">記事 01　<time datetime="2026-10-05">2026.10.05</time>　<span class="tag">日々考えること</span></span><span class="post-title">「ほぼ全部AIで作ったよ」の一言で、40代会社員がブログを始めるまで</span><span class="post-excerpt">友達が見せてくれたサイトは、ほぼ全部AI製。知識ほぼゼロの会社員が、このブログを始めるまで。</span><span class="post-toggle"><span class="when-closed">記事を読む ＋</span><span class="when-open">記事を閉じる −</span></span></summary><div class="post-body"><p>少し前まで、僕にとって「Webサイトを作る」というのは、完全に別世界の話でした。</p><p>HTML？<br>GitHub？<br>Vercel？</p><p>名前を聞いたことがあるような、ないような。<br>少なくとも、自分でWebサービスを作って公開するなんて、プログラミングができる人だけがやることだと思っていました。</p><p>そんな考えが変わったのは、友達が見せてくれた、あるイベント情報をまとめたWebサイトがきっかけでした。</p><p>普通にきれいなサイトでした。<br>イベントが一覧になっていて、必要な情報もまとまっている。</p><p>「へえ、こんなの作ったんだ」</p><p>くらいの気持ちで見ていたのですが、そこで友達から一言。</p><p>「これ、ほぼ全部AIに作ってもらったよ」</p><p>え？</p><p>最初は意味がよく分かりませんでした。<br>AIに文章を書いてもらった、という話ではありません。</p><p><strong>WebサイトそのものをAIに作ってもらった。</strong></p><p>正直、かなり衝撃でした。</p><p>「じゃあ、自分でもできるんじゃないか？」</p><p>そう思って、試しにChatGPTにお願いしてみました。<br>僕が作ってみたかったのは、BTSの情報をメンバーごとに見られるサイト。</p><p>「BTSのニュースやイベントをまとめたサイトを作って」</p><p>ざっくりそんなお願いをしてみました。</p><p>すると。</p><p>……できました。</p><p>もちろん最初から完璧ではありません。<br>ボタンを押しても動かなかったり、表示がおかしかったり、ニュースが取得できなかったり。</p><p>でも、見た目はちゃんとWebサイトでした。</p><p>しかも、修正したいところを、</p><p>「ここを直して」<br>「この機能を追加して」<br>「スマホでも見やすくして」</p><p>と伝えると、AIがコードを書き直してくれる。</p><p>僕はプログラムを書けません。<br>それでも、少しずつサイトができていく。</p><p>ここで、もう一度衝撃を受けました。</p><p><strong>もしかして今って、アイデアさえあれば、普通の会社員でもサービスを作れる時代なんじゃないか。</strong></p><p>そう思ったら、急にいろいろ試したくなりました。<br>そしてその勢いのまま、ChatGPT Plusにも課金しました。</p><p>さらに、</p><p>「せっかくなら、自分がAIを使っていろいろ作っていく過程そのものを残してみよう」</p><p>と思い、このブログを作り始めています。</p><p>40代。<br>会社員。<br>プログラミング経験ほぼゼロ。</p><p>そんな人間がAIを使って、</p><p>Webサイトを作ったり、<br>アプリを作ったり、<br>公開してみたり、<br>できればその先で収益化まで挑戦してみる。</p><p>このブログでは、その過程をできるだけそのまま残していこうと思います。</p><p>成功するかもしれないし、全然うまくいかないかもしれません。<br>たぶん、失敗もかなりすると思います。<br>でも、それも含めて記録していきます。</p><p>そして、ここまで読んで、</p><p>「文章うまくまとめてるな」</p><p>と思ってくれた方がいたら、最後にひとつだけ。</p><p>この文章も、</p><p><strong>AIに書いてもらいました。</strong></p><p>もう、そういう時代みたいです。</p></div></details>
 <details class="post" id="article-organize"><summary><span class="post-meta">記事 02　<time datetime="2026-10-05">2026.10.05</time>　<span class="tag">AIを使ってみた</span></span><span class="post-title">最初にやったのは、ChatGPTの会話を5つに分けること</span><span class="post-excerpt">ブログ名、デザイン、記事、アプリ。混ざりがちな話を、5つの場所に分けて整理しました。</span><span class="post-toggle"><span class="when-closed">記事を読む ＋</span><span class="when-open">記事を閉じる −</span></span></summary><div class="post-body"><p>AIを使っていろいろ作ってみよう。<br>そう決めたものの、最初に困ったことがありました。</p><p>それは、<br><strong>話がどんどん混ざっていくこと。</strong></p><p>ブログの名前を考えていたと思ったら、<br>次はWebサイトのデザインの話。<br>その次は記事を書いて、<br>さらにBTSのサイトを直して、<br>今度は次に何を作るか考える。</p><p>これを全部ひとつのチャットでやると、だんだん自分でも分からなくなってきます。</p><p>そこで、まずChatGPTの中に「プロジェクト」を作りました。</p><p>プロジェクトというと難しく聞こえますが、僕の感覚では、<br><strong>ひとつの大きな箱を作る</strong><br>くらいのイメージです。</p><p>今回は「ブログ作成」という箱を作って、その中をさらに5つに分けました。</p><h3>① ブログ全体・戦略</h3><p>ここでは、ブログの名前や方向性、何を書くか、将来どうやって収益につなげるかなどを考えます。</p><h3>② ブログサイト開発</h3><p>ここでは、実際のブログの見た目や機能を作ります。</p><p>「もう少しカッコよくしたい」<br>「記事一覧を見やすくしたい」</p><p>といった話はここでします。</p><h3>③ 記事作成</h3><p>ここは、その名の通り記事を書く場所です。<br>今読んでもらっているこの記事も、ここで作っています。</p><h3>④ AI制作物</h3><p>ここでは、AIを使って実際に作るものを扱います。<br>たとえば、BTSの情報サイトや、掛け算アプリなどです。</p><h3>⑤ ネタ帳</h3><p>「こんなの作ったら面白そう」</p><p>と思ったものを、とりあえず置いておく場所です。<br>すぐ作るかどうかは考えません。<br>思いついたら、まずここに入れておきます。</p><p>なぜ、わざわざこんなふうに分けたのか。<br>理由は単純です。</p><p><strong>あとで見返したときに分かりやすいから。</strong></p><p>AIとの会話はとても便利ですが、使っていると、どんどん話が広がっていきます。</p><p>「あれ、前に決めたブログ名なんだっけ？」<br>「BTSサイトの修正って、どこで話したっけ？」</p><p>となりやすい。</p><p>なので最初に役割ごとに分けておくと、かなり楽です。</p><p>人でたとえるなら、<br>ブログ全体を考える人、<br>サイトを作る人、<br>記事を書く人、<br>新しいものを作る人、<br>アイデアをためる人。</p><p>それぞれ担当を分けたような感じです。</p><p>もちろん、全部相手はChatGPTです。<br>でも、場所を分けるだけでかなり整理しやすくなりました。</p><p>そしてもうひとつ良かったのは、<br><strong>「次に何をすればいいか」が分かりやすくなったこと。</strong></p><p>記事を書きたければ③へ行く。<br>サイトを直したければ②へ行く。<br>新しいアイデアを思いついたら⑤へ入れる。</p><p>これだけです。</p><p>僕のように、プログラミングもブログ運営もよく分からない状態から始める場合、<br>最初から完璧に理解する必要はないと思っています。</p><p>とりあえず箱を作って、<br>分けて、<br>AIに聞きながら進める。</p><p>今のところ、それで十分進められています。</p><p>ちなみに、この「5つに分ける」というやり方も、<br><strong>ChatGPTに相談して決めました。</strong></p><p>AIを使うための方法まで、AIに聞いています。</p></div></details>
 </section>
-<section id="ai-works" class="section" aria-labelledby="ai-works-title"><div class="section-head"><h2 id="ai-works-title">AI制作物</h2><p>身近な「こんなのがあったら」を形に。</p></div><article class="work-showcase"><div class="work-intro"><span class="tag">Webサイト · 改善中</span><h3>BTS NEWS HUB</h3><p>妻のひと言から生まれた、BTSのニュースや情報を見るサイト。下の画面からそのまま操作できます。</p><div class="work-links"><a href="../bts-news-hub/" target="_blank" rel="noopener noreferrer">別画面で開く</a><a href="#article-bts">作ったときの記事を読む</a></div></div><iframe class="work-frame" src="../bts-news-hub/" title="BTS NEWS HUBをブログ内で試す" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe><p class="work-help">うまく表示されない場合や、大きな画面で使いたい場合は「別画面で開く」を押してください。</p></article></section>
+<section id="ai-works" class="section" aria-labelledby="ai-works-title"><div class="section-head"><h2 id="ai-works-title">AI制作物</h2><p>身近な「こんなのがあったら」を形に。</p></div><article class="work-showcase"><div class="work-intro"><span class="tag">Webサイト · 改善中</span><h3>BTS NEWS HUB</h3><p>妻のひと言から生まれた、BTSのニュースや情報を見るサイト。下の画面からそのまま操作できます。</p><div class="work-links"><a href="../bts-news-hub/" target="_blank" rel="noopener noreferrer">別画面で開く</a><a href="#article-bts">作ったときの記事を読む</a></div></div><iframe class="work-frame" src="../bts-news-hub/" title="BTS NEWS HUBをブログ内で試す" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe><p class="work-help">うまく表示されない場合や、大きな画面で使いたい場合は「別画面で開く」を押してください。</p></article><article id="work-kuku" class="work-showcase"><div class="work-intro"><span class="tag">Webアプリ · Ver.1</span><h3>九九そだて</h3><p>子供のために作った九九学習・育成アプリ。九九を覚え、復習や時間を選べるチャレンジに取り組み、ポイントでキャラクターを育てます。</p><div class="work-links"><a href="../kuku-sodate/" target="_blank" rel="noopener noreferrer">九九そだてを試す</a><a href="#article-kuku">作ったときの記事を読む</a></div></div><iframe class="work-frame" src="../kuku-sodate/" title="九九そだてをブログ内で試す" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe><p class="work-help">大きな画面で使いたい場合は「九九そだてを試す」を押してください。学習記録は使っているブラウザに保存されます。</p></article></section>
 <section id="about" class="section about" aria-labelledby="about-title"><div><p class="eyebrow">ABOUT THIS NOTE</p><h2 id="about-title">このブログについて</h2></div><div><p><strong>40代の会社員が、AIで試したことや、日々考えていることを綴るブログです。</strong></p><p>まずは思いついたものを作ってみる。動いたら公開して、使いづらいところを直す。その先で、収益化も試してみたいと思っています。</p><p>仕事や暮らしの中で感じたこと、うまくいかなかったこと、次に試したいことも残していきます。同じように「自分でも何か作ってみたい」と思う人に届けばうれしいです。</p></div></section>
 <section id="privacy" class="section" aria-labelledby="privacy-title"><h2 id="privacy-title">アクセス解析について</h2><p>当サイトでは、利用状況の把握と改善のためGoogle Analyticsを使用し、Cookie等を通じて閲覧・操作に関する情報を収集します。当サイトから氏名やメールアドレスを解析データとして送信することはありません。詳しくは<a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer" style="text-decoration:underline">Googleによるデータの利用</a>をご覧ください。</p></section>
 </main>

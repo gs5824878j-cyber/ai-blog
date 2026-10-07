@@ -7,19 +7,5 @@
     "assets": [
       "analytics-realtime-zero.png"
     ]
-  },
-  {
-    "id": "article-ai-dependence",
-    "publish_at": "2026-10-08T07:00:00+09:00",
-    "html": "ai-dependence.html",
-    "css": "ai-dependence.css",
-    "assets": []
-  },
-  {
-    "id": "article-kuku",
-    "publish_at": "2026-10-09T07:00:00+09:00",
-    "html": "kuku.html",
-    "css": "kuku.css",
-    "assets": []
   }
 ]
