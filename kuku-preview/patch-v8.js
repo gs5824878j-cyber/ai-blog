@@ -301,3 +301,5 @@
   promoteYesterdayLearning();
   injectStyles();
 })();
+// load v9 refinement patch
+(function(){const s=document.createElement('script');s.src='./patch-v9.js?v=9';document.head.appendChild(s)})();
