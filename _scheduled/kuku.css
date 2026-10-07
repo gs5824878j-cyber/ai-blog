@@ -1,0 +1,17 @@
+#article-kuku .post-body{overflow-wrap:anywhere}
+#article-kuku .post-body hr{border:0;border-top:1px solid var(--line);margin:38px 0}
+#article-kuku .post-body h4{font-size:19px;margin:28px 0 16px}
+#article-kuku .kuku-compare-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+#article-kuku .kuku-comparison{margin:30px 0}
+#article-kuku .kuku-comparison-note{font-size:13px;color:var(--muted);line-height:1.8}
+#article-kuku .kuku-compare-grid figure{margin:0;min-width:0;display:flex;flex-direction:column}
+#article-kuku .kuku-diagram{padding:20px;border:1px solid var(--line);border-radius:12px;background:#f3f6f4;flex:1}
+#article-kuku .kuku-diagram-final{background:#f1f6df}
+#article-kuku .kuku-step{font-size:12px;font-weight:800;letter-spacing:.12em;color:var(--muted)}
+#article-kuku .kuku-diagram h4{margin:8px 0 18px;font-size:19px}
+#article-kuku .kuku-symbol{background:var(--ink);color:var(--accent);border-radius:9px;text-align:center;font-size:23px;font-weight:800;padding:20px 6px;margin-bottom:18px}
+#article-kuku .kuku-feature{background:#fff;border:1px solid var(--line);border-radius:7px;padding:10px 12px;margin-bottom:9px;font-size:14px;line-height:1.7}
+#article-kuku .kuku-diagram-summary{font-size:14px;line-height:1.8;margin:18px 0 0}
+#article-kuku figcaption{font-size:13px;line-height:1.8;color:var(--muted);padding:12px 2px}
+#article-kuku .kuku-revisions{text-align:center;padding:14px;background:#edf3e7;border-radius:8px;font-size:15px;margin:16px 0 0}
+@media(max-width:680px){#article-kuku .kuku-compare-grid{grid-template-columns:minmax(0,1fr)}#article-kuku .kuku-diagram{padding:18px}}
