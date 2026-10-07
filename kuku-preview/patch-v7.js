@@ -433,5 +433,3 @@
   petroom();
   settings();
 })();
-// load v8 learning-flow patch
-(function(){const s=document.createElement('script');s.src='./patch-v8.js?v=8';document.head.appendChild(s)})();
