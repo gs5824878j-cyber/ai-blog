@@ -174,7 +174,7 @@
       <div class="mini-progress">${pos+1} / ${hiddenQueue.length}</div>
       <div class="chant-card">
         <div class="chant-eq">${dan} × ${b} = ？</div>
-        <div class="chant-reading">${reading(b).replace(/[ぁ-ん]+$/,'')}</div>
+        <div class="chant-reading" style="font-size:15px;color:#8b8178">九九の唱え方も思い出してみよう</div>
         <div class="ansrow" style="justify-content:center;margin-top:12px">
           <input id="learnAnswerV8" class="answer" inputmode="numeric" aria-label="答え">
           <button class="cta" style="width:auto" onclick="learnSubmitHideV8()">答える</button>
@@ -242,16 +242,19 @@
       testPos++;
       if(testPos>=9){
         const learnedOn=todayLocal();
+        const passed=testCorrect>=7;
         for(let b2=1;b2<=9;b2++){
           const f=S.f[`${dan}x${b2}`];
-          f.learnedOn=learnedOn;
-          f.pendingLearn=true;
           f.learnTestScore=testCorrect;
-          // 今日の課題に混ざらないよう、SRS開始は翌日
-          if(f.l<0){f.l=-1;f.d=0;}
+          if(passed){
+            f.learnedOn=learnedOn;
+            f.pendingLearn=true;
+            // 今日の課題に混ざらないよう、SRS開始は翌日
+            if(f.l<0){f.l=-1;f.d=0;}
+          }
         }
         if(!S.learnHistory)S.learnHistory={};
-        S.learnHistory[dan]={date:learnedOn,score:testCorrect};
+        S.learnHistory[dan]={date:learnedOn,score:testCorrect,passed};
         save();
         phase='result';
       }
@@ -272,7 +275,7 @@
         <button class="cta green" onclick="learnAgainV8()">もう一度おぼえる</button>
         <button class="cta white" onclick="learnFinishV8()">段をえらぶ</button>
       </div>
-      <div class="learn-note">この段は今日の課題には入りません。翌日以降、復習対象になります。</div>`;
+      <div class="learn-note">${pass?'合格した段は今日の課題には入りません。翌日以降、復習対象になります。':'7/9以上で「学習済み」になります。今回は今日の課題には追加されません。'}</div>`;
   }
   window.learnAgainV8=function(){phase='look';pos=0;testCorrect=0;render();};
   window.learnFinishV8=function(){phase='choose';render();};
