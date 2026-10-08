@@ -21,5 +21,12 @@
     "html": "one-url.html",
     "css": "one-url.css",
     "assets": []
+  },
+  {
+    "id": "article-contact",
+    "publish_at": "2026-10-09T07:00:00+09:00",
+    "html": "contact.html",
+    "css": "contact.css",
+    "assets": []
   }
 ]
