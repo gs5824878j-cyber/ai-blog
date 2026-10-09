@@ -38,5 +38,18 @@
       "search-console-mail-redacted.png",
       "search-console-first-impressions.png"
     ]
+  },
+  {
+    "id": "article-line-stickers",
+    "publish_at": "2026-10-10T07:00:00+09:00",
+    "html": "line-stickers.html",
+    "css": "line-stickers.css",
+    "assets": [
+      "line-stickers-ojisan.png",
+      "line-stickers-woman.png",
+      "line-stickers-animals.png"
+    ],
+    "work_html": "line-stickers-work.html",
+    "work_id": "work-line-stickers"
   }
 ]

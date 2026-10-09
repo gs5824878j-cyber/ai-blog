@@ -33,6 +33,15 @@ def publish(root, now=None):
             css = (pending / post['css']).read_text(encoding='utf-8')
             if f'id="{style_id}"' not in result:
                 result = result.replace('</head>', f'<style id="{style_id}">\n{css}</style>\n</head>', 1)
+        if post.get('work_html') and f'id="{post["work_id"]}"' not in result:
+            work = (pending / post['work_html']).read_text(encoding='utf-8').strip()
+            if f'id="{post["work_id"]}"' not in work:
+                raise ValueError('Work ID mismatch')
+            section = re.search(r'<section id="ai-works"[^>]*>.*?</section>', result, re.S)
+            if not section:
+                raise ValueError('AI works section missing')
+            end = section.end() - len('</section>')
+            result = result[:end] + work + result[end:]
         for name in post.get('assets', []):
             if Path(name).name != name:
                 raise ValueError('Asset must be a basename')
