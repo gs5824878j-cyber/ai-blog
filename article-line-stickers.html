@@ -2,8 +2,8 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Google Search ConsoleとGoogle Analyticsを入れてみた。結果、誰も来ていなかった。 | 40代のAI制作ノート</title>
-<meta name="description" content="検索とアクセスを調べる準備は万全。期待して開いた画面には、見事な「0」が並んでいました。">
+<title>AIでLINEスタンプを作って、販売するところまでやってみた。 | 40代のAI制作ノート</title>
+<meta name="description" content="絵を描けない僕が、AIと3種類のLINEスタンプを制作。画像を整え、申請して、LINE STOREに並ぶまでの体験です。">
 <meta name="theme-color" content="#142c29">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23142c29'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='sans-serif' font-size='21' font-weight='bold' fill='%23e5ff78'%3EN%3C/text%3E%3C/svg%3E">
 <style>
@@ -93,158 +93,8 @@ if (window.blogAnalyticsEnabled) {
 .article-heading h1{margin:0 0 14px}.article-heading .post-excerpt{margin-bottom:0}
 .article-page .post-body{overflow-wrap:anywhere}.article-page img{max-width:100%;height:auto}
 @media(max-width:700px){.post-card,.article-heading{padding:24px}.article-page{padding-top:24px}}
-</style><link rel="canonical" href="https://gs5824878j-cyber.github.io/ai-blog/article-analytics.html"></head>
+</style><link rel="canonical" href="https://gs5824878j-cyber.github.io/ai-blog/article-line-stickers.html"></head>
 <body>
 <a class="skip" href="#main">本文へ移動</a>
 <div class="top"><header class="wrap"><a class="brand" href="index.html" aria-label="40代のAI制作ノート ホーム"><span class="logo" aria-hidden="true">N</span>40代のAI制作ノート</a><nav aria-label="メインメニュー"><a href="index.html#journal">ブログ記事</a><a href="index.html#ai-works">AI制作物</a><a href="index.html#about">このブログについて</a></nav></header></div>
-<main id="main" class="wrap article-page"><a class="article-back" href="index.html#journal">← 記事一覧に戻る</a><article class="post" id="article-analytics"><div class="article-heading"><span class="post-meta">記事 05　<time datetime="2026-10-07">2026.10.07</time>　<span class="tag">AIを使ってみた</span></span><h1 class="post-title">Google Search ConsoleとGoogle Analyticsを入れてみた。結果、誰も来ていなかった。</h1><span class="post-excerpt">検索とアクセスを調べる準備は万全。期待して開いた画面には、見事な「0」が並んでいました。</span></div><div class="post-body"><p>少しずつブログっぽくなってきました。</p>
-<p>記事も増えてきた。</p>
-<p>BTS NEWS HUBも作った。</p>
-<p>GitHub Pagesで公開もできた。</p>
-<p>そうなると、次に気になることがあります。</p>
-<p><strong>「で、誰か見てるの？」</strong></p>
-<p>ここです。</p>
-<p>せっかくブログを作ったなら、</p>
-<p>何人くらい来ているのか。</p>
-<p>どの記事が読まれているのか。</p>
-<p>Google検索から来ている人はいるのか。</p>
-<p>やっぱり気になります。</p>
-<p>そこで今回は、</p>
-<p><strong>Google Search Console</strong><br>と<br><strong>Google Analytics</strong></p>
-<p>を入れてみました。</p>
-<p>名前だけ見ると、急に本格的です。</p>
-<p>ただ、役割は意外とシンプルです。</p>
-<hr>
-<h3>Google Search Consoleは「Google検索でどう見られているか」を見るもの</h3>
-<p>まずはGoogle Search Console。</p>
-<p>ものすごく簡単に言うと、</p>
-<p><strong>Google検索の中で、自分のサイトがどう扱われているかを見るためのもの</strong></p>
-<p>です。</p>
-<p>たとえば、</p>
-<p>「Google検索に自分の記事が出ているか」</p>
-<p>「どんな言葉で検索されているか」</p>
-<p>「検索結果に何回表示されたか」</p>
-<p>「そこから何回クリックされたか」</p>
-<p>などが分かります。</p>
-<p>つまり、</p>
-<p><strong>Google検索側から見た成績表</strong></p>
-<p>みたいなものです。</p>
-<hr>
-<h3>Google Analyticsは「サイトに来た人の動き」を見るもの</h3>
-<p>一方のGoogle Analytics。</p>
-<p>こちらは、</p>
-<p><strong>実際にサイトに来た人が、どう動いたかを見るためのもの</strong></p>
-<p>です。</p>
-<p>たとえば、</p>
-<p>何人来たのか。</p>
-<p>どのページを見たのか。</p>
-<p>どのくらい見たのか。</p>
-<p>スマホから見たのか。</p>
-<p>そんなことが分かります。</p>
-<p>僕の中では、</p>
-<p>Search Consoleが</p>
-<p><strong>「Google検索の外側から見るツール」</strong></p>
-<p>Analyticsが</p>
-<p><strong>「サイトの中に入ってからを見るツール」</strong></p>
-<p>という理解です。</p>
-<p>この2つを入れておけば、</p>
-<p>「検索される」</p>
-<p>↓</p>
-<p>「クリックされる」</p>
-<p>↓</p>
-<p>「サイトに来る」</p>
-<p>↓</p>
-<p>「記事を読む」</p>
-<p>という流れが少しずつ見えてくるはずです。</p>
-<hr>
-<h3>なんだか、急にブロガーっぽい</h3>
-<p>ここまで設定していると、</p>
-<p>少しテンションが上がります。</p>
-<p>Google Search Console。</p>
-<p>Google Analytics。</p>
-<p>なんか急に、</p>
-<p><strong>ちゃんと運営している人っぽい。</strong></p>
-<p>記事もある。</p>
-<p>分析ツールも入れた。</p>
-<p>あとはアクセスが増えるだけ。</p>
-<p>「もしかして、もう誰か見てるんじゃないか？」</p>
-<p>そんな期待を込めて、Google Analyticsを開いてみました。</p>
-<figure class="article-figure"><a href="analytics-realtime-zero.png" target="_blank" rel="noopener" aria-label="Google Analyticsの画面を拡大して開く"><img src="analytics-realtime-zero.png" width="1279" height="322" alt="過去4時間のアクティブユーザーが0、表示回数も0と表示されたGoogle Analyticsのリアルタイムページ" loading="lazy" decoding="async"></a><figcaption>Google Analyticsのリアルタイム画面。過去4時間のアクティブユーザー0、表示回数0。</figcaption></figure>
-<p>そして表示されたのがこちら。</p>
-<hr>
-<h3 class="zero-heading">0</h3>
-<p class="zero-stat"><strong>アクティブユーザー <span class="zero-number">0</span></strong></p>
-<p class="zero-stat"><strong>表示回数 <span class="zero-number">0</span></strong></p>
-<p>……</p>
-<p>見事です。</p>
-<p>誰もいません。</p>
-<p>リアルタイムページという名前なのに、</p>
-<p><strong>リアルタイムで誰もいない。</strong></p>
-<p>「ひょっとしたら1人くらい」</p>
-<p>と思っていた自分が甘かった。</p>
-<p>0です。</p>
-<p>しかもアクティブユーザーだけでなく、</p>
-<p>表示回数も0。</p>
-<p>ここまできれいに何もないと、逆に気持ちがいいです。</p>
-<hr>
-<h3>分析ツールは入れた。でも分析するデータがない</h3>
-<p>Google Analyticsを入れれば、</p>
-<p>アクセス分析ができる。</p>
-<p>たしかにその通りです。</p>
-<p>ただし、ひとつ条件がありました。</p>
-<p><strong>アクセスがあれば。</strong></p>
-<p>今の僕のブログには、</p>
-<p>高度な分析より先に必要なものがあります。</p>
-<p>人です。</p>
-<p>「どの記事が人気なのか」</p>
-<p>を分析する前に、</p>
-<p>まず誰かに読んでもらわないといけません。</p>
-<p>「滞在時間が長いページはどれか」</p>
-<p>を調べる前に、</p>
-<p>まず滞在してもらわないといけません。</p>
-<p>完全に順番を飛ばしていました。</p>
-<hr>
-<h3>でも、これはスタート地点としては分かりやすい</h3>
-<p>少し寂しい結果ではあります。</p>
-<p>でも逆に、</p>
-<p><strong>0からスタートしたことが数字で残る</strong></p>
-<p>のは面白いなとも思っています。</p>
-<p>これが1になって、</p>
-<p>10になって、</p>
-<p>100になっていくのか。</p>
-<p>それとも、</p>
-<p>半年後も0に近いのか。</p>
-<p>今の段階では全く分かりません。</p>
-<p>だからこそ、このブログでは、</p>
-<p>「最初からアクセスがありました」</p>
-<p>ではなく、</p>
-<p><strong>本当に誰も見ていない状態からどうなるのか</strong></p>
-<p>も、そのまま記録していこうと思います。</p>
-<hr>
-<h3>今は「分析」より「知ってもらう」が先</h3>
-<p>今回、Google Search ConsoleとGoogle Analyticsを入れてみて、</p>
-<p>ひとつ分かったことがあります。</p>
-<p>ツールを入れれば、</p>
-<p>勝手に人が来るわけではない。</p>
-<p>当たり前ですが、</p>
-<p><strong>分析ツールは集客ツールではありません。</strong></p>
-<p>Google Search Consoleも、</p>
-<p>Google Analyticsも、</p>
-<p>検索での表示や、サイトに来た後の動きを教えてくれるものです。</p>
-<p>今の僕に必要なのは、</p>
-<p>もっと記事を書くこと。</p>
-<p>作ったものを増やすこと。</p>
-<p>そして、</p>
-<p>このブログの存在を知ってもらうこと。</p>
-<p>まずはそこからです。</p>
-<hr>
-<p>というわけで、</p>
-<p>Google Search ConsoleとGoogle Analyticsの導入は完了。</p>
-<p>ブログの分析体制も完成。</p>
-<p>そして現在の分析結果は、</p>
-<p class="zero-stat"><strong><span class="zero-number">0</span>人。</strong></p>
-<p>これ以上ないくらい、</p>
-<p>分かりやすいスタート地点になりました。</p>
-<p>次にこの画面を見るときは、</p>
-<p>せめて「1」が出ていてほしい。</p>
-<p>今のところ、目標はかなり控えめです。</p></div></article><a class="article-back" href="index.html#journal">← 記事一覧に戻る</a></main><footer><div class="wrap contact-area"><p>ご感想や改善アイデア、不具合のご報告をお待ちしています。</p><a class="contact-link" href="https://docs.google.com/forms/d/e/1FAIpQLSf8ybGcAi6hXm-hvkK73Dxk7JghaYOeuf8Mgur7c15dF9ppFw/viewform" target="_blank" rel="noopener noreferrer">お問い合わせ・ご感想 <span aria-hidden="true">↗</span></a><small>Googleフォームが別画面で開きます。お名前・メールアドレスは任意です。</small></div><div class="wrap footer-inner"><span>© 2026 40代のAI制作ノート · Ver.1.8</span><span>小さく作って、少しずつ育てる。</span></div></footer><script>if(window.blogAnalyticsEnabled){gtag("event","article_open",{"article_id": "article-analytics", "article_title": "Google Search ConsoleとGoogle Analyticsを入れてみた。結果、誰も来ていなかった。", "send_to": "G-NBJ7466KDJ"});}</script></body></html>
+<main id="main" class="wrap article-page"><a class="article-back" href="index.html#journal">← 記事一覧に戻る</a><article class="post" id="article-line-stickers"><div class="article-heading"><span class="post-meta">記事 11　<time datetime="2026-10-10">2026.10.10</time>　<span class="tag">AIで作ってみた</span></span><h1 class="post-title">AIでLINEスタンプを作って、販売するところまでやってみた。</h1><span class="post-excerpt">絵を描けない僕が、AIと3種類のLINEスタンプを制作。画像を整え、申請して、LINE STOREに並ぶまでの体験です。</span></div><div class="post-body"><p>これまでAIを使って、</p><p>Webサイトを作ったり、</p><p>九九アプリを作ったりしてきました。</p><p>そして今回作ったのが、</p><p>LINEスタンプです。</p><p>しかも、</p><p>作って終わりではありません。</p><p>実際にLINEへ申請して、</p><p>販売するところまでやってみました。</p><h2>「LINEスタンプもAIで作れるのでは？」</h2><p>きっかけは、かなり単純でした。</p><p>最近、ChatGPTにいろいろなものを作ってもらっている中で、</p><p>ふと思いました。</p><p>「LINEスタンプも作れるんじゃない？」</p><p>僕自身、イラストは描けません。</p><p>LINEスタンプを作った経験もありません。</p><p>でも、</p><p>「こんな感じのキャラクターで」</p><p>「もう少しシュールに」</p><p>「日常で使いやすい言葉にして」</p><p>とAIにお願いしていけば、</p><p>それらしいものがどんどん出来上がっていきます。</p><p>最初に作ったのが、</p><p>くたびれた会社員のおじさん。</p><p>「おつかれ」</p><p>「今日はもうムリ」</p><p>「また飲もー」</p><p>「老眼で見えん」</p><p>など、</p><p>かなり疲れています。</p><figure class="line-sticker-sheet"><img src="line-stickers-ojisan.png" alt="くたびれ会社員おじさんの16種類のスタンプ一覧" width="818" height="852" loading="lazy"><figcaption>くたびれ会社員おじさん</figcaption></figure><p>見ているうちに、</p><p>なんとなく愛着が湧いてきました。</p><h2>せっかくなので、別パターンも作ってみた</h2><p>ひとつ作れると、</p><p>また欲が出ます。</p><p>次は、</p><p>家でダラダラしているような女性キャラクター。</p><figure class="line-sticker-sheet"><img src="line-stickers-woman.png" alt="ゆるだら女性スタンプの16種類のスタンプ一覧" width="871" height="850" loading="lazy"><figcaption>ゆるだら女性スタンプ</figcaption></figure><p>「あとで見る」</p><p>「今日きつい」</p><p>「仕事おわり」</p><p>「やっぱりね」</p><p>など、</p><p>こちらもかなり力が抜けています。</p><p>そしてもうひとつ。</p><p>ゆるい動物版。</p><figure class="line-sticker-sheet"><img src="line-stickers-animals.png" alt="ゆるい動物スタンプの16種類のスタンプ一覧" width="824" height="839" loading="lazy"><figcaption>ゆるい動物スタンプ</figcaption></figure><p>カピバラ、</p><p>ペンギン、</p><p>コアラ、</p><p>ナマケモノなど、</p><p>「今日はもうムリ」</p><p>と言っている動物たちです。</p><p>こうして見ると、</p><p>僕が作るスタンプ、</p><p>だいたいみんな疲れています。</p><h2>AIで絵を作れば終わり……ではなかった</h2><p>LINEスタンプの場合、</p><p>画像を作っただけでは販売できません。</p><p>実際に登録しようとすると、</p><p>個別のスタンプ画像だけではなく、</p><p>メイン画像やタブ用の画像なども必要になります。</p><p>さらに、</p><p>LINEに登録できる形に画像をそろえて、</p><p>まとめてアップロードする必要があります。</p><p>ここでも、</p><p>「これ、どうすればいい？」</p><p>とChatGPTに聞きました。</p><p>そして、</p><p>スタンプ画像をまとめる。</p><p>必要な画像を作る。</p><p>LINEに登録しやすい形にする。</p><p>ZIPファイルにまとめる。</p><p>というところまで、</p><p>AIにかなり手伝ってもらいました。</p><p>こういう作業は、</p><p>知らない人からすると地味にハードルが高いです。</p><p>僕も、</p><p>「スタンプの絵ができたら終わり」</p><p>くらいに思っていました。</p><p>実際には、</p><p>そこから販売できる形に整える作業がある。</p><p>これも、やってみて初めて知りました。</p><h2>そして、本当に販売できた</h2><p>最終的に、</p><p>3種類ともLINEスタンプとして公開するところまで進みました。</p><p>自分で絵を描けない人間が、</p><p>「こんなスタンプ作りたい」</p><p>とAIにお願いして、</p><p>本当にLINE STOREに商品として並ぶ。</p><p>これはなかなか不思議な感覚でした。</p><p>少し前までなら、</p><p>LINEスタンプを作ろうと思ったら、</p><p>まず、</p><p>「絵が描けないから無理」</p><p>で終わっていたと思います。</p><p>でも今は、</p><p>作る能力がなくても、作りたいものを説明できれば形にできる。</p><p>AIを使っていて面白いのは、こういうところです。</p><h2>今回作った3種類</h2><p>今回販売しているのはこちらです。</p><h3>くたびれ会社員おじさん</h3><p>疲れた会社員の日常で使いやすそうなスタンプです。</p><p>「今日はもうムリ」</p><p>「おつかれ」</p><p>「また明日か…」</p><p>あたりは、</p><p>自分でも普通に使えそうです。</p><p><a href="https://line.me/S/sticker/37135165" target="_blank" rel="noopener noreferrer">LINEスタンプを見る</a></p><h3>ゆるだら女性スタンプ</h3><p>スマホを見ながらダラダラしている、</p><p>かなり脱力系のスタンプです。</p><p>「あとで見る」</p><p>「今日きつい」</p><p>「仕事おわり」</p><p>など、</p><p>頑張りたくない日に向いています。</p><p><a href="https://line.me/S/sticker/37135151" target="_blank" rel="noopener noreferrer">LINEスタンプを見る</a></p><h3>ゆるい動物スタンプ</h3><p>カピバラやペンギン、コアラなど、</p><p>ゆるい動物たちのスタンプです。</p><p>個人的には、</p><p>動物が真顔で</p><p>「無理せんで」</p><p>と言っている感じが気に入っています。</p><p><a href="https://line.me/S/sticker/37135059" target="_blank" rel="noopener noreferrer">LINEスタンプを見る</a></p><h2>売れるかどうかは、また別の話</h2><p>ここまで書くと、</p><p>「AIでスタンプを作って販売。副業完成！」</p><p>みたいに見えるかもしれません。</p><p>もちろん、</p><p>そんなに甘くありません。</p><p>販売できたことと、</p><p>売れることは全く別です。</p><p>今後どれくらい売れるのか。</p><p>そもそも売れるのか。</p><p>これはまだ分かりません。</p><p>ただ、</p><p>今回の目的は、</p><p>まず一度、</p><p>AIを使って商品を作り、実際に販売するところまで経験してみる</p><p>ことでした。</p><p>その意味では、</p><p>ひとつ大きく前に進めた気がします。</p><p>Webサイトを作る。</p><p>アプリを作る。</p><p>スタンプを作る。</p><p>少しずつ、</p><p>AIでできることの範囲が広がってきました。</p><p>もし今回の3種類の中に、</p><p>「これ、ちょっと使ってみたい」</p><p>と思うものがあれば、</p><p>よかったらLINE STOREでのぞいてみてください。</p><p>無理におすすめするつもりはありません。</p><p>ただ、</p><p>もしどこかのLINEの会話で、</p><p>僕がAIと作った</p><p>「今日はもうムリ」</p><p>が使われていたら、</p><p>それはかなりうれしいです。</p></div></article><a class="article-back" href="index.html#journal">← 記事一覧に戻る</a></main><footer><div class="wrap contact-area"><p>ご感想や改善アイデア、不具合のご報告をお待ちしています。</p><a class="contact-link" href="https://docs.google.com/forms/d/e/1FAIpQLSf8ybGcAi6hXm-hvkK73Dxk7JghaYOeuf8Mgur7c15dF9ppFw/viewform" target="_blank" rel="noopener noreferrer">お問い合わせ・ご感想 <span aria-hidden="true">↗</span></a><small>Googleフォームが別画面で開きます。お名前・メールアドレスは任意です。</small></div><div class="wrap footer-inner"><span>© 2026 40代のAI制作ノート · Ver.1.8</span><span>小さく作って、少しずつ育てる。</span></div></footer><script>if(window.blogAnalyticsEnabled){gtag("event","article_open",{"article_id": "article-line-stickers", "article_title": "AIでLINEスタンプを作って、販売するところまでやってみた。", "send_to": "G-NBJ7466KDJ"});}</script></body></html>
