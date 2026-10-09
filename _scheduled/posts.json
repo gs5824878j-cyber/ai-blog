@@ -28,5 +28,15 @@
     "html": "contact.html",
     "css": "contact.css",
     "assets": []
+  },
+  {
+    "id": "article-first-impressions",
+    "publish_at": "2026-10-09T10:05:00+09:00",
+    "html": "impressions.html",
+    "css": "impressions.css",
+    "assets": [
+      "search-console-mail-redacted.png",
+      "search-console-first-impressions.png"
+    ]
   }
 ]
