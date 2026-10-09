@@ -86,7 +86,7 @@ def render_pages(root, source):
         for id in ids:
             value = value.replace('href="#' + id + '"', 'href="' + id + '.html"')
         if on_article:
-            for anchor in ('journal', 'ai-works', 'about', 'privacy', 'work-kuku'):
+            for anchor in ('journal', 'ai-works', 'about', 'privacy', 'work-kuku', 'work-line-stickers'):
                 value = value.replace('href="#' + anchor + '"', 'href="index.html#' + anchor + '"')
             value = value.replace('href="#"', 'href="index.html"')
         return value
