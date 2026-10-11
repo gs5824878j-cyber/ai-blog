@@ -51,5 +51,16 @@
     ],
     "work_html": "line-stickers-work.html",
     "work_id": "work-line-stickers"
+  },
+  {
+    "id": "article-learning-maker-progress",
+    "publish_at": "2026-10-11T08:57:00+09:00",
+    "html": "learning-maker-progress.html",
+    "css": "learning-maker-progress.css",
+    "assets": [
+      "learning-maker-v24.png",
+      "learning-maker-v25.png",
+      "learning-maker-v26.png"
+    ]
   }
 ]
