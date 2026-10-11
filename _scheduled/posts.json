@@ -62,5 +62,16 @@
       "learning-maker-v25-cropped.png",
       "learning-maker-v26-cropped.png"
     ]
+  },
+  {
+    "id": "article-kimidake-drill",
+    "publish_at": "2026-10-11T22:41:00+09:00",
+    "html": "kimidake-drill.html",
+    "css": "kimidake-drill.css",
+    "assets": [
+      "kimidake-home.png",
+      "kimidake-print.png",
+      "kimidake-parent-sample.png"
+    ]
   }
 ]

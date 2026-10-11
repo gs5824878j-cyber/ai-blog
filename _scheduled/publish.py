@@ -114,7 +114,7 @@ def render_pages(root, source):
         page_head = re.sub(r'<title>.*?</title>', '<title>' + escape(title) + ' | 40代のAI制作ノート</title>', head, flags=re.S)
         page_head = re.sub(r'<meta name="description" content="[^"]*">', '<meta name="description" content="' + escape(excerpt, quote=True) + '">', page_head)
         url = BASE_URL + id + '.html'
-        page_head += '<link rel="canonical" href="' + url + '">'
+        page_head += '<link rel="canonical" href="' + (id + '.html' if id == 'article-kimidake-drill' else url) + '">'
         event = '<script>if(window.blogAnalyticsEnabled){gtag("event","article_open",'+json.dumps({'article_id':id,'article_title':title,'send_to':'G-NBJ7466KDJ'},ensure_ascii=False)+');}</script>'
         page = page_head + '</head>' + links(shell, True) + '<main id="main" class="wrap article-page"><a class="article-back" href="index.html#journal">← 記事一覧に戻る</a><article class="post" id="' + id + '"><div class="article-heading">' + heading + '</div><div class="post-body">' + content + '</div></article><a class="article-back" href="index.html#journal">← 記事一覧に戻る</a></main>' + footer + event + '</body></html>\n'
         (root / (id + '.html')).write_text(links(page, True), encoding='utf-8')
