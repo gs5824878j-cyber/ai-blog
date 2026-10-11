@@ -58,9 +58,9 @@
     "html": "learning-maker-progress.html",
     "css": "learning-maker-progress.css",
     "assets": [
-      "learning-maker-v24.png",
-      "learning-maker-v25.png",
-      "learning-maker-v26.png"
+      "learning-maker-v24-cropped.png",
+      "learning-maker-v25-cropped.png",
+      "learning-maker-v26-cropped.png"
     ]
   }
 ]
