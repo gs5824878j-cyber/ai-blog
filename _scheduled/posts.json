@@ -73,5 +73,15 @@
       "kimidake-print.png",
       "kimidake-parent-sample.png"
     ]
+  },
+  {
+    "id": "article-chatgpt-one-week",
+    "publish_at": "2026-10-12T20:53:58+09:00",
+    "html": "chatgpt-one-week.html",
+    "css": "chatgpt-one-week.css",
+    "assets": [
+      "one-week-bts.jpg",
+      "one-week-kuku.jpg"
+    ]
   }
 ]
