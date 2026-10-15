@@ -50,11 +50,11 @@ def publish(root, now=None):
             if target.exists() and target.read_bytes() != data:
                 raise ValueError(f'Existing asset differs: {name}')
             copies.append((target, data))
+    count = len(re.findall(r'<details class="post" id="', result))
+    result, changed = re.subn(r'全\d+記事', f'全{count}記事', result, count=1)
+    if changed != 1:
+        raise ValueError('Article count marker missing')
     if result != original:
-        count = len(re.findall(r'<details class="post" id="', result))
-        result, changed = re.subn(r'全\d+記事', f'全{count}記事', result, count=1)
-        if changed != 1:
-            raise ValueError('Article count marker missing')
         result = result.replace('Ver.1.7', 'Ver.1.8')
         path.write_text(result, encoding='utf-8')
     for target, data in copies:
