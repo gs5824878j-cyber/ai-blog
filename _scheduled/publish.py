@@ -4,6 +4,9 @@ from pathlib import Path
 import json
 import re
 import shutil
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
+from favicon import apply as apply_favicon
 
 
 def publish(root, now=None):
@@ -11,7 +14,7 @@ def publish(root, now=None):
     pending = root / '_scheduled'
     path = pending / 'blog-source.html'
     original = path.read_text(encoding='utf-8')
-    result = original
+    result = apply_favicon(original)
     copies = []
     posts = json.loads((pending / 'posts.json').read_text(encoding='utf-8'))
     for post in sorted(posts, key=lambda p: datetime.fromisoformat(p['publish_at'])):
