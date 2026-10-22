@@ -108,6 +108,8 @@ def render_pages(root, source):
     shell = body[:body.index('<main')]
     footer = re.search(r'<footer>.*?</footer>', body, re.S)[0]
     sitemap_urls = [BASE_URL]
+    seo_path = root / "_scheduled" / "article-seo.json"
+    article_seo = json.loads(seo_path.read_text(encoding="utf-8")) if seo_path.exists() else {}
     for post in posts:
         id, summary, content = post[1], post[2], post[3]
         title = plain(re.search(r'<span class="post-title">(.*?)</span>', summary, re.S)[1])
@@ -118,6 +120,14 @@ def render_pages(root, source):
         page_head = re.sub(r'<meta name="description" content="[^"]*">', '<meta name="description" content="' + escape(excerpt, quote=True) + '">', page_head)
         url = BASE_URL + id + '.html'
         page_head += '<link rel="canonical" href="' + (id + '.html' if id == 'article-kimidake-drill' else url) + '">'
+        if id in article_seo:
+            og = {"og:type": "article", "og:title": title, "og:description": excerpt,
+                  "og:url": url, "og:site_name": "40代のAI制作ノート", "og:locale": "ja_JP",
+                  "og:image": BASE_URL + "favicon-512x512.png",
+                  "og:image:alt": "40代のAI制作ノートのNロゴ",
+                  "article:published_time": article_seo[id]["published_time"]}
+            page_head += ''.join('<meta property="' + key + '" content="' + escape(value, quote=True) + '">' for key, value in og.items())
+            page_head += '<meta name="twitter:card" content="summary">'
         event = '<script>if(window.blogAnalyticsEnabled){gtag("event","article_open",'+json.dumps({'article_id':id,'article_title':title,'send_to':'G-NBJ7466KDJ'},ensure_ascii=False)+');}</script>'
         page = page_head + '</head>' + links(shell, True) + '<main id="main" class="wrap article-page"><a class="article-back" href="index.html#journal">← 記事一覧に戻る</a><article class="post" id="' + id + '"><div class="article-heading">' + heading + '</div><div class="post-body">' + content + '</div></article><a class="article-back" href="index.html#journal">← 記事一覧に戻る</a></main>' + footer + event + '</body></html>\n'
         (root / (id + '.html')).write_text(links(page, True), encoding='utf-8')
