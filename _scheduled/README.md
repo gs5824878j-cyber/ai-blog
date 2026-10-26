@@ -5,3 +5,5 @@
 `python3 _scheduled/publish.py` で公開時刻を過ぎた記事を追加し、index.html、article-*.html、sitemap.xml、配信用 _site を生成します。予約記事は posts.json の日本時間付き公開日時に従います。未公開記事は公開用ファイルやサイトマップに含みません。
 
 記事URLは article-ID.html です。既存の #article-ID リンクは対応ページへ転送します。記事・画像を削除せず、公開済みの記事を保持して再生成します。GitHub Actions は生成したページと編集元をまとめて保存して公開します。
+
+`article-seo.json` には記事IDごとの `published_time` を設定します。任意の `title`・`description` を指定すると、見出しや一覧の文章を変えずにページのSEOタイトル・説明とOGPへ反映できます。省略時は既存どおり記事タイトルと抜粋を使います。

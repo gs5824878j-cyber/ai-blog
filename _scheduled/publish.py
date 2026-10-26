@@ -114,14 +114,17 @@ def render_pages(root, source):
         id, summary, content = post[1], post[2], post[3]
         title = plain(re.search(r'<span class="post-title">(.*?)</span>', summary, re.S)[1])
         excerpt = plain(re.search(r'<span class="post-excerpt">(.*?)</span>', summary, re.S)[1])
+        seo = article_seo.get(id, {})
+        page_title = seo.get('title', title + ' | 40代のAI制作ノート')
+        description = seo.get('description', excerpt)
         heading = summary[:summary.index('<span class="post-toggle">')]
         heading = re.sub(r'<span class="post-title">(.*?)</span>', r'<h1 class="post-title">\1</h1>', heading, flags=re.S)
-        page_head = re.sub(r'<title>.*?</title>', '<title>' + escape(title) + ' | 40代のAI制作ノート</title>', head, flags=re.S)
-        page_head = re.sub(r'<meta name="description" content="[^"]*">', '<meta name="description" content="' + escape(excerpt, quote=True) + '">', page_head)
+        page_head = re.sub(r'<title>.*?</title>', '<title>' + escape(page_title) + '</title>', head, flags=re.S)
+        page_head = re.sub(r'<meta name="description" content="[^"]*">', '<meta name="description" content="' + escape(description, quote=True) + '">', page_head)
         url = BASE_URL + id + '.html'
         page_head += '<link rel="canonical" href="' + (id + '.html' if id == 'article-kimidake-drill' else url) + '">'
         if id in article_seo:
-            og = {"og:type": "article", "og:title": title, "og:description": excerpt,
+            og = {"og:type": "article", "og:title": seo.get('title', title), "og:description": description,
                   "og:url": url, "og:site_name": "40代のAI制作ノート", "og:locale": "ja_JP",
                   "og:image": BASE_URL + "favicon-512x512.png",
                   "og:image:alt": "40代のAI制作ノートのNロゴ",
