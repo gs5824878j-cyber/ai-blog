@@ -70,7 +70,7 @@ def publish(root, now=None):
 
 
 
-BASE_URL = 'https://gs5824878j-cyber.github.io/ai-blog/'
+BASE_URL = 'https://blog.foremira.com/'
 
 
 def render_pages(root, source):
@@ -122,15 +122,15 @@ def render_pages(root, source):
         page_head = re.sub(r'<title>.*?</title>', '<title>' + escape(page_title) + '</title>', head, flags=re.S)
         page_head = re.sub(r'<meta name="description" content="[^"]*">', '<meta name="description" content="' + escape(description, quote=True) + '">', page_head)
         url = BASE_URL + id + '.html'
-        page_head += '<link rel="canonical" href="' + (id + '.html' if id == 'article-kimidake-drill' else url) + '">'
-        if id in article_seo:
-            og = {"og:type": "article", "og:title": seo.get('title', title), "og:description": description,
-                  "og:url": url, "og:site_name": "40代のAI制作ノート", "og:locale": "ja_JP",
-                  "og:image": BASE_URL + "favicon-512x512.png",
-                  "og:image:alt": "40代のAI制作ノートのNロゴ",
-                  "article:published_time": article_seo[id]["published_time"]}
-            page_head += ''.join('<meta property="' + key + '" content="' + escape(value, quote=True) + '">' for key, value in og.items())
-            page_head += '<meta name="twitter:card" content="summary">'
+        page_head += '<link rel="canonical" href="' + url + '">'
+        og = {"og:type": "article", "og:title": seo.get('title', title), "og:description": description,
+              "og:url": url, "og:site_name": "40代のAI制作ノート", "og:locale": "ja_JP",
+              "og:image": BASE_URL + "favicon-512x512.png",
+              "og:image:alt": "40代のAI制作ノートのNロゴ",
+              "article:published_time": article_seo.get(id, {}).get("published_time", "")}
+        if not og['article:published_time']: del og['article:published_time']
+        page_head += ''.join('<meta property="' + key + '" content="' + escape(value, quote=True) + '">' for key, value in og.items())
+        page_head += '<meta name="twitter:card" content="summary">'
         event = '<script>if(window.blogAnalyticsEnabled){gtag("event","article_open",'+json.dumps({'article_id':id,'article_title':title,'send_to':'G-NBJ7466KDJ'},ensure_ascii=False)+');}</script>'
         page = page_head + '</head>' + links(shell, True) + '<main id="main" class="wrap article-page"><a class="article-back" href="index.html#journal">← 記事一覧に戻る</a><article class="post" id="' + id + '"><div class="article-heading">' + heading + '</div><div class="post-body">' + content + '</div></article><a class="article-back" href="index.html#journal">← 記事一覧に戻る</a></main>' + footer + event + '</body></html>\n'
         (root / (id + '.html')).write_text(links(page, True), encoding='utf-8')
@@ -142,9 +142,9 @@ def render_pages(root, source):
     home = article_re.sub(card, source)
     # Keep head analytics; remove obsolete accordion handlers after the footer.
     home = home[:home.index('</footer>') + len('</footer>')]
-    home = home.replace('</head>', css + '<link rel="canonical" href="' + BASE_URL + '"></head>', 1)
+    home = home.replace('</head>', '<meta property="og:url" content="' + BASE_URL + '">' + css + '<link rel="canonical" href="' + BASE_URL + '"></head>', 1)
     redirects = json.dumps({id:id+'.html' for id in ids})
-    home += '<script>const articleURLs=' + redirects + ';function routeOldArticle(){const url=articleURLs[location.hash.slice(1)];if(url)location.replace(url);}window.addEventListener("hashchange",routeOldArticle);routeOldArticle();</script></body></html>\n'
+    home += '<script>const articleURLs=' + redirects + ';function routeOldArticle(){const url=articleURLs[location.hash.slice(1)];if(url)location.replace(url+location.search);}window.addEventListener("hashchange",routeOldArticle);routeOldArticle();</script></body></html>\n'
     (root / 'index.html').write_text(links(home), encoding='utf-8')
     xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     xml += ''.join('  <url><loc>' + escape(url) + '</loc></url>\n' for url in sitemap_urls)
