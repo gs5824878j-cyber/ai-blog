@@ -86,6 +86,15 @@ def render_pages(root, source):
     def plain(value):
         return unescape(re.sub(r'<[^>]+>', '', value)).strip()
     def links(value, on_article=False):
+        # Rewrite active self-links without changing historical URLs in article text.
+        value = re.sub(
+            r'href="https://gs5824878j-cyber\.github\.io/ai-blog/([^"]*)"',
+            lambda match: 'href="' + (match[1] or 'index.html') + '"',
+            value,
+        )
+        value = value.replace('href="https://gs5824878j-cyber.github.io/bts-news-hub/', 'href="https://bts.foremira.com/')
+        value = value.replace('href="../bts-news-hub/', 'href="https://bts.foremira.com/')
+        value = value.replace('href="../kuku-sodate/', 'href="https://gs5824878j-cyber.github.io/kuku-sodate/')
         for id in ids:
             value = value.replace('href="#' + id + '"', 'href="' + id + '.html"')
         if on_article:
@@ -142,7 +151,15 @@ def render_pages(root, source):
     home = article_re.sub(card, source)
     # Keep head analytics; remove obsolete accordion handlers after the footer.
     home = home[:home.index('</footer>') + len('</footer>')]
-    home = home.replace('</head>', '<meta property="og:url" content="' + BASE_URL + '">' + css + '<link rel="canonical" href="' + BASE_URL + '"></head>', 1)
+    home_og = {
+        'og:type': 'website',
+        'og:url': BASE_URL,
+        'og:title': plain(re.search(r'<title>(.*?)</title>', source, re.S)[1]),
+        'og:description': unescape(re.search(r'<meta name="description" content="([^"]*)">', source)[1]),
+        'og:image': BASE_URL + 'favicon-512x512.png',
+    }
+    home_meta = ''.join('<meta property="' + key + '" content="' + escape(value, quote=True) + '">' for key, value in home_og.items())
+    home = home.replace('</head>', home_meta + css + '<link rel="canonical" href="' + BASE_URL + '"></head>', 1)
     redirects = json.dumps({id:id+'.html' for id in ids})
     home += '<script>const articleURLs=' + redirects + ';function routeOldArticle(){const url=articleURLs[location.hash.slice(1)];if(url)location.replace(url+location.search);}window.addEventListener("hashchange",routeOldArticle);routeOldArticle();</script></body></html>\n'
     (root / 'index.html').write_text(links(home), encoding='utf-8')
