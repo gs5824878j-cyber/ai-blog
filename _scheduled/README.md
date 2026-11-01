@@ -7,3 +7,9 @@
 記事URLは article-ID.html です。既存の #article-ID リンクは対応ページへ転送します。記事・画像を削除せず、公開済みの記事を保持して再生成します。GitHub Actions は生成したページと編集元をまとめて保存して公開します。
 
 `article-seo.json` には記事IDごとの `published_time` を設定します。任意の `title`・`description` を指定すると、見出しや一覧の文章を変えずにページのSEOタイトル・説明とOGPへ反映できます。省略時は既存どおり記事タイトルと抜粋を使います。
+
+## 移行済みサービスへの紹介リンク
+
+制作物カードと記事内の起動リンクはBTS=bts.foremira.com、九九=kuku.foremira.com、ドリル=drill.foremira.com、旅行=trip.foremira.comを使う。publish.pyは生成元と予約記事を取り込んだ後、および出力時に既知の旧起動URLを補正する。query/hashを保持し、記事本文の過去の記述・画像・日付は置き換えない。URLそのものを表示しているリンクは表示文字も新URLに揃える。
+
+旧originの記録救出・復元・印刷ページは保存領域を使うため、九九/ドリルは起動用のroot/index.htmlだけを補正対象にする。専用救出ページの旧URLは維持する。テストバトンのリンクや公開状態はこの補正の対象外。

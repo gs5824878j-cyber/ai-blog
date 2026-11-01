@@ -5,8 +5,62 @@ import json
 import re
 import shutil
 import sys
+from html import escape, unescape
+from urllib.parse import urljoin, urlsplit, urlunsplit
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
 from favicon import apply as apply_favicon
+
+
+def migrated_service_url(value):
+    """Resolve active service links; retain old storage-recovery/print pages."""
+    decoded = unescape(value)
+    resolved = urljoin('https://gs5824878j-cyber.github.io/ai-blog/', decoded) if decoded.startswith('../') else decoded
+    url = urlsplit(resolved)
+    if url.scheme not in ('', 'http', 'https') or url.username or url.password:
+        return decoded
+    hosts = {
+        'oyako-trip-ten.vercel.app': 'trip.foremira.com',
+        'kimidake-doriru.vercel.app': 'drill.foremira.com',
+    }
+    path = url.path or '/'
+    host = hosts.get(url.hostname)
+    if url.hostname == 'kimidake-doriru.vercel.app' and path not in ('/', '/index.html'):
+        return decoded
+    if url.hostname == 'gs5824878j-cyber.github.io':
+        for project, domain in [('bts-news-hub', 'bts.foremira.com'), ('kuku-sodate', 'kuku.foremira.com')]:
+            prefix = '/' + project
+            if path == prefix or path.startswith(prefix + '/'):
+                path = path[len(prefix):] or '/'
+                if project == 'kuku-sodate' and path not in ('/', '/index.html'):
+                    return decoded
+                host = domain
+                break
+    if not host:
+        return decoded
+    return urlunsplit(('https', host, path, url.query, url.fragment))
+
+
+def update_service_links(source):
+    """Update anchor destinations and matching URL labels, not historical prose."""
+    anchors = re.compile(r'''(?P<tag><a\b(?:[^"'>]|"[^"]*"|'[^']*')*>)(?P<label>.*?)(?P<close></a\s*>)''', re.I | re.S)
+    attributes = re.compile(r'''\s+(?P<name>[^\s=<>/]+)(?:\s*=\s*(?:"(?P<double>[^"]*)"|'(?P<single>[^']*)'|(?P<bare>[^\s<>]+)))?''', re.S)
+
+    def replace(match):
+        tag, label = match['tag'], match['label']
+        href = next((attr for attr in attributes.finditer(tag) if attr['name'].lower() == 'href'), None)
+        if not href or all(href[group] is None for group in ('double', 'single', 'bare')):
+            return match[0]
+        group = next(group for group in ('double', 'single', 'bare') if href[group] is not None)
+        old = unescape(href[group])
+        new = migrated_service_url(old)
+        if old == new:
+            return match[0]
+        tag = tag[:href.start(group)] + escape(new, quote=True) + tag[href.end(group):]
+        if unescape(label.strip()) == old:
+            label = label.replace(label.strip(), escape(new, quote=False), 1)
+        return tag + label + match['close']
+
+    return anchors.sub(replace, source)
 
 
 def publish(root, now=None):
@@ -53,6 +107,7 @@ def publish(root, now=None):
             if target.exists() and target.read_bytes() != data:
                 raise ValueError(f'Existing asset differs: {name}')
             copies.append((target, data))
+    result = update_service_links(result)
     count = len(re.findall(r'<details class="post" id="', result))
     result, changed = re.subn(r'全\d+記事', f'全{count}記事', result, count=1)
     if changed != 1:
@@ -87,14 +142,12 @@ def render_pages(root, source):
         return unescape(re.sub(r'<[^>]+>', '', value)).strip()
     def links(value, on_article=False):
         # Rewrite active self-links without changing historical URLs in article text.
+        value = update_service_links(value)
         value = re.sub(
             r'href="https://gs5824878j-cyber\.github\.io/ai-blog/([^"]*)"',
             lambda match: 'href="' + (match[1] or 'index.html') + '"',
             value,
         )
-        value = value.replace('href="https://gs5824878j-cyber.github.io/bts-news-hub/', 'href="https://bts.foremira.com/')
-        value = value.replace('href="../bts-news-hub/', 'href="https://bts.foremira.com/')
-        value = value.replace('href="../kuku-sodate/', 'href="https://gs5824878j-cyber.github.io/kuku-sodate/')
         for id in ids:
             value = value.replace('href="#' + id + '"', 'href="' + id + '.html"')
         if on_article:
