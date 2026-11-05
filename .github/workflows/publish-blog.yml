@@ -5,6 +5,10 @@ on:
     # 22:00 UTC = 07:00 the following day in Japan.
     # Later checks also retry deployment if the first run fails.
     - cron: '0,15,30,45 22 * * *'
+    # 2026-11-05 13:00 JST = 04:00 UTC. Retries are idempotent.
+    - cron: '0,5,10,20,30,45 4 5 11 *'
+    # 2026-11-06 09:00 JST = 00:00 UTC. Cron has no year field.
+    - cron: '0,5,10,20,30,45 0 6 11 *'
   workflow_dispatch:
   push:
     branches: [main]
@@ -28,6 +32,8 @@ jobs:
           ref: main
       - name: Publish articles whose release time has arrived
         run: python3 _scheduled/publish.py
+      - name: Run publication regression tests
+        run: python3 -m unittest discover -s tests -v
       - name: Save published articles to the repository
         run: |
           git add index.html article-*.html sitemap.xml _scheduled/blog-source.html
@@ -55,4 +61,17 @@ jobs:
       - name: Deploy blog
         id: deployment
         uses: actions/deploy-pages@v4
+  verify:
+    needs: deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v6
+      - name: Verify release visibility and series links on the live site
+        run: python3 scripts/verify_scheduled_publication.py --report "${{ runner.temp }}/publication-observations.json"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: publication-observations-${{ github.run_id }}
+          path: ${{ runner.temp }}/publication-observations.json
 

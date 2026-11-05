@@ -1,0 +1,8 @@
+{
+  "title": "独自ドメインシリーズ",
+  "links": {
+    "article-foremira-domain": ["article-domain-acquisition-guide"],
+    "article-domain-acquisition-guide": ["article-foremira-domain", "article-domain-connection-guide"],
+    "article-domain-connection-guide": ["article-domain-acquisition-guide"]
+  }
+}

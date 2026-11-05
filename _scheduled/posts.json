@@ -83,5 +83,19 @@
       "one-week-bts.jpg",
       "one-week-kuku.jpg"
     ]
+  },
+  {
+    "id": "article-domain-acquisition-guide",
+    "number": 26,
+    "publish_at": "2026-11-05T13:00:00+09:00",
+    "html": "article26.html",
+    "assets": []
+  },
+  {
+    "id": "article-domain-connection-guide",
+    "number": 27,
+    "publish_at": "2026-11-06T09:00:00+09:00",
+    "html": "article27.html",
+    "assets": []
   }
 ]

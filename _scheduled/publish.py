@@ -7,6 +7,7 @@ import shutil
 import sys
 from html import escape, unescape
 from urllib.parse import urljoin, urlsplit, urlunsplit
+from zoneinfo import ZoneInfo
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
 from favicon import apply as apply_favicon
 
@@ -63,19 +64,41 @@ def update_service_links(source):
     return anchors.sub(replace, source)
 
 
-def publish(root, now=None):
+def scheduled_posts(root):
+    posts = json.loads((root / '_scheduled/posts.json').read_text(encoding='utf-8'))
+    ids = [post['id'] for post in posts]
+    if len(ids) != len(set(ids)):
+        raise ValueError('Duplicate scheduled article IDs')
+    for post in posts:
+        if not re.fullmatch(r'article-[a-z0-9-]+', post['id']):
+            raise ValueError('Invalid scheduled article ID')
+        if datetime.fromisoformat(post['publish_at']).tzinfo is None:
+            raise ValueError('publish_at must specify a timezone')
+    return sorted(posts, key=lambda post: datetime.fromisoformat(post['publish_at']))
+
+
+def publication_time(now=None):
     now = now or datetime.now(timezone.utc)
+    if now.tzinfo is None:
+        raise ValueError('Publication clock must specify a timezone')
+    return now
+
+
+def publish(root, now=None):
+    now = publication_time(now)
     pending = root / '_scheduled'
     path = pending / 'blog-source.html'
     original = path.read_text(encoding='utf-8')
     result = apply_favicon(original)
     copies = []
-    posts = json.loads((pending / 'posts.json').read_text(encoding='utf-8'))
-    for post in sorted(posts, key=lambda p: datetime.fromisoformat(p['publish_at'])):
+    posts = scheduled_posts(root)
+    for post in posts:
         due = datetime.fromisoformat(post['publish_at'])
         if due.tzinfo is None:
             raise ValueError('publish_at must specify a timezone')
         if now < due:
+            # Also protect builds made from a checkout with stale future output.
+            result = re.sub(r'<details class="post" id="' + re.escape(post['id']) + r'">.*?</details>\s*', '', result, flags=re.S)
             continue
         marker = f'<details class="post" id="{post["id"]}">'
         if marker not in result:
@@ -86,10 +109,11 @@ def publish(root, now=None):
             if not match:
                 raise ValueError('Could not locate article list; refusing to overwrite')
             result = result[:match.start()] + article + '\n' + result[match.start():]
-            style_id = f'scheduled-style-{post["id"]}'
-            css = (pending / post['css']).read_text(encoding='utf-8')
-            if f'id="{style_id}"' not in result:
-                result = result.replace('</head>', f'<style id="{style_id}">\n{css}</style>\n</head>', 1)
+            if post.get('css'):
+                style_id = f'scheduled-style-{post["id"]}'
+                css = (pending / post['css']).read_text(encoding='utf-8')
+                if f'id="{style_id}"' not in result:
+                    result = result.replace('</head>', f'<style id="{style_id}">\n{css}</style>\n</head>', 1)
         if post.get('work_html') and f'id="{post["work_id"]}"' not in result:
             work = (pending / post['work_html']).read_text(encoding='utf-8').strip()
             if f'id="{post["work_id"]}"' not in work:
@@ -108,6 +132,9 @@ def publish(root, now=None):
                 raise ValueError(f'Existing asset differs: {name}')
             copies.append((target, data))
     result = update_service_links(result)
+    numbers = re.findall(r'<span class="post-meta">記事\s+(\d+)', result)
+    if len(numbers) != len(set(numbers)):
+        raise ValueError('Article number conflict; refusing to overwrite')
     count = len(re.findall(r'<details class="post" id="', result))
     result, changed = re.subn(r'全\d+記事', f'全{count}記事', result, count=1)
     if changed != 1:
@@ -172,6 +199,9 @@ def render_pages(root, source):
     sitemap_urls = [BASE_URL]
     seo_path = root / "_scheduled" / "article-seo.json"
     article_seo = json.loads(seo_path.read_text(encoding="utf-8")) if seo_path.exists() else {}
+    series_path = root / '_scheduled/series-links.json'
+    series = json.loads(series_path.read_text(encoding='utf-8')) if series_path.exists() else {}
+    titles = {post[1]: plain(re.search(r'<span class="post-title">(.*?)</span>', post[2], re.S)[1]) for post in posts}
     for post in posts:
         id, summary, content = post[1], post[2], post[3]
         title = plain(re.search(r'<span class="post-title">(.*?)</span>', summary, re.S)[1])
@@ -179,6 +209,12 @@ def render_pages(root, source):
         seo = article_seo.get(id, {})
         page_title = seo.get('title', title + ' | 40代のAI制作ノート')
         description = seo.get('description', excerpt)
+        destinations = [target for target in series.get('links', {}).get(id, []) if target in ids]
+        if destinations:
+            section_id = 'series-' + id
+            content += '<section class="related-articles" aria-labelledby="' + section_id + '"><h2 id="' + section_id + '">' + escape(series.get('title', '関連記事')) + '</h2><ul class="related-list">'
+            content += ''.join('<li><a class="related-link" href="' + target + '.html"><span class="related-title">' + escape(titles[target]) + '</span></a></li>' for target in destinations)
+            content += '</ul></section>'
         heading = summary[:summary.index('<span class="post-toggle">')]
         heading = re.sub(r'<span class="post-title">(.*?)</span>', r'<h1 class="post-title">\1</h1>', heading, flags=re.S)
         page_head = re.sub(r'<title>.*?</title>', '<title>' + escape(page_title) + '</title>', head, flags=re.S)
@@ -221,14 +257,19 @@ def render_pages(root, source):
     (root / 'sitemap.xml').write_text(xml + '</urlset>\n', encoding='utf-8')
 
 
-def build_site(root):
+def build_site(root, now=None):
+    now = publication_time(now)
     site = root / '_site'
     if site.exists():
         shutil.rmtree(site)
     site.mkdir()
     # Publish generated pages and existing root-level assets.
     allowed = {'.html', '.png', '.jpg', '.jpeg', '.webp', '.svg', '.ico', '.css', '.js', '.txt', '.xml'}
+    hidden = {post['id'] + '.html' for post in scheduled_posts(root) if now < datetime.fromisoformat(post['publish_at'])}
+    published = set(re.findall(r'<details class="post" id="([^"]+)">', (root / '_scheduled/blog-source.html').read_text(encoding='utf-8')))
     for source in root.iterdir():
+        if source.name in hidden or (source.name.startswith('article-') and source.suffix == '.html' and source.stem not in published):
+            continue
         if source.is_file() and not source.name.startswith(('.', '_')) and (source.suffix in allowed or source.name == 'CNAME'):
             shutil.copyfile(source, site / source.name)
     (site / '.nojekyll').touch()
@@ -236,7 +277,8 @@ def build_site(root):
 
 if __name__ == '__main__':
     root = Path(__file__).resolve().parent.parent
-    changed = publish(root)
-    build_site(root)
+    now = datetime.now(timezone.utc)
+    changed = publish(root, now)
+    build_site(root, now)
     print('Published due articles.' if changed else 'No new articles due; current site prepared.')
 
