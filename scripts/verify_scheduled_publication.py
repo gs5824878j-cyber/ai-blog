@@ -8,6 +8,7 @@ from pathlib import Path
 import time
 from urllib.error import HTTPError
 from urllib.request import Request, urlopen
+from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = 'https://blog.foremira.com/'
@@ -58,10 +59,11 @@ def observe():
         if visible:
             parsed = Page(source)
             expected = seo[post['id']]
-            row['ok'] = (status == 200 and post['id'] + '.html' in home and post['id'] + '.html' in sitemap and '<h1 class="post-title">' + expected['title'] + '</h1>' in source and parsed.meta.get('description') == expected['description'] and parsed.meta.get('og:url') == row['url'])
+            row['ok'] = (status == 200 and post['id'] + '.html' in home and post['id'] + '.html' in sitemap and '<h1 class="post-title">' + expected['title'] + '</h1>' in source and '<title>' + expected['title'] + '</title>' in source and '<link rel="canonical" href="' + row['url'] + '">' in source and parsed.meta.get('description') == expected['description'] and parsed.meta.get('og:url') == row['url'] and parsed.time == due.astimezone(ZoneInfo('Asia/Tokyo')).date().isoformat())
             if row['ok']:
-                row['first_verified_at'] = now.isoformat()
-                row['verification_delay_seconds'] = round((now - due).total_seconds())
+                verified = datetime.now(timezone.utc)
+                row['first_verified_at'] = verified.isoformat()
+                row['verification_delay_seconds'] = round((verified - due).total_seconds())
         else:
             source_status, _ = fetch('_scheduled/' + post['html'])
             row['source_http_status'] = source_status
@@ -75,7 +77,7 @@ def observe():
             continue
         status, source = fetch(origin + '.html')
         if status != 200:
-            continue  # Already reported by the article visibility check.
+            raise RuntimeError('Series article is not reachable: ' + origin)
         links = Page(source).links
         for target in destinations:
             present = target + '.html' in links
@@ -90,10 +92,16 @@ def main():
     parser.add_argument('--attempts', type=int, default=10)
     args = parser.parse_args()
     report = {'records': [], 'error': None}
+    first_verified = {}
     try:
         for attempt in range(args.attempts):
             try:
                 report['records'] = observe()
+                for row in report['records']:
+                    if row.get('first_verified_at'):
+                        first_verified.setdefault(row['url'], row['first_verified_at'])
+                        row['first_verified_at'] = first_verified[row['url']]
+                        row['verification_delay_seconds'] = round((datetime.fromisoformat(row['first_verified_at']) - datetime.fromisoformat(row['scheduled_at'])).total_seconds())
                 report['error'] = None
                 if all(row['ok'] for row in report['records']):
                     break
